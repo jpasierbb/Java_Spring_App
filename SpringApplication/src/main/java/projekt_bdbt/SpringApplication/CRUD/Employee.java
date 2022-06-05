@@ -1,63 +1,63 @@
 package projekt_bdbt.SpringApplication.CRUD;
 
 public class Employee {
-    public int idPracownik;
-    public String imie;
-    public String drugieImie;
-    public String nazwisko;
+    public int ID_PRACOWNIKA;
+    public String IMIE;
+    public String DRUGIE_IMIE;
+    public String NAZWISKO;
     public String PESEL;
-    public String plec;
-    public String dataZatrudnienia;
-    public String numerTel;
-    public int idAdres;
-    public int idStanowisko;
+    public String PLEC;
+    public String DATA_ZATRUDNIENIA;
+    public String NUMER_TELEFONU;
+    public int ID_ADRESU;
+    public int ID_STANOWISKA;
 
     public Employee() {
     }
 
-    public Employee(int idPracownik, String imie, String drugieImie, String nazwisko, String PESEL, String plec,String dataZatrudnienia, String numerTel, int idAdres, int idStanowisko) {
-        this.idPracownik = idPracownik;
-        this.imie = imie;
-        this.drugieImie = drugieImie;
-        this.nazwisko = nazwisko;
+    public Employee(int ID_PRACOWNIKA, String IMIE, String DRUGIE_IMIE, String NAZWISKO, String PESEL, String PLEC, String DATA_ZATRUDNIENIA, String NUMER_TELEFONU, int ID_ADRESU, int ID_STANOWISKA) {
+        this.ID_PRACOWNIKA = ID_PRACOWNIKA;
+        this.IMIE = IMIE;
+        this.DRUGIE_IMIE = DRUGIE_IMIE;
+        this.NAZWISKO = NAZWISKO;
         this.PESEL = PESEL;
-        this.plec = plec;
-        this.dataZatrudnienia = dataZatrudnienia;
-        this.numerTel = numerTel;
-        this.idAdres = idAdres;
-        this.idStanowisko = idStanowisko;
+        this.PLEC = PLEC;
+        this.DATA_ZATRUDNIENIA = DATA_ZATRUDNIENIA;
+        this.NUMER_TELEFONU = NUMER_TELEFONU;
+        this.ID_ADRESU = ID_ADRESU;
+        this.ID_STANOWISKA = ID_STANOWISKA;
     }
 
-    public int getIdPracownik() {
-        return idPracownik;
+    public int getID_PRACOWNIKA() {
+        return ID_PRACOWNIKA;
     }
 
-    public void setIdPracownik(int idPracownik) {
-        this.idPracownik = idPracownik;
+    public void setID_PRACOWNIKA(int ID_PRACOWNIKA) {
+        this.ID_PRACOWNIKA = ID_PRACOWNIKA;
     }
 
-    public String getImie() {
-        return imie;
+    public String getIMIE() {
+        return IMIE;
     }
 
-    public void setImie(String imie) {
-        this.imie = imie;
+    public void setIMIE(String IMIE) {
+        this.IMIE = IMIE;
     }
 
-    public String getDrugieImie() {
-        return drugieImie;
+    public String getDRUGIE_IMIE() {
+        return DRUGIE_IMIE;
     }
 
-    public void setDrugieImie(String drugieImie) {
-        this.drugieImie = drugieImie;
+    public void setDRUGIE_IMIE(String DRUGIE_IMIE) {
+        this.DRUGIE_IMIE = DRUGIE_IMIE;
     }
 
-    public String getNazwisko() {
-        return nazwisko;
+    public String getNAZWISKO() {
+        return NAZWISKO;
     }
 
-    public void setNazwisko(String nazwisko) {
-        this.nazwisko = nazwisko;
+    public void setNAZWISKO(String NAZWISKO) {
+        this.NAZWISKO = NAZWISKO;
     }
 
     public String getPESEL() {
@@ -68,59 +68,59 @@ public class Employee {
         this.PESEL = PESEL;
     }
 
-    public String getPlec() {
-        return plec;
+    public String getPLEC() {
+        return PLEC;
     }
 
-    public void setPlec(String plec) {
-        this.plec = plec;
+    public void setPLEC(String PLEC) {
+        this.PLEC = PLEC;
     }
 
-    public String getDataZatrudnienia() {
-        return dataZatrudnienia;
+    public String getDATA_ZATRUDNIENIA() {
+        return DATA_ZATRUDNIENIA;
     }
 
-    public void setDataZatrudnienia(String dataZatrudnienia) {
-        this.dataZatrudnienia = dataZatrudnienia;
+    public void setDATA_ZATRUDNIENIA(String DATA_ZATRUDNIENIA) {
+        this.DATA_ZATRUDNIENIA = DATA_ZATRUDNIENIA;
     }
 
-    public String getNumerTel() {
-        return numerTel;
+    public String getNUMER_TELEFONU() {
+        return NUMER_TELEFONU;
     }
 
-    public void setNumerTel(String numerTel) {
-        this.numerTel = numerTel;
+    public void setNUMER_TELEFONU(String NUMER_TELEFONU) {
+        this.NUMER_TELEFONU = NUMER_TELEFONU;
     }
 
-    public int getIdAdres() {
-        return idAdres;
+    public int getID_ADRESU() {
+        return ID_ADRESU;
     }
 
-    public void setIdAdres(int idAdres) {
-        this.idAdres = idAdres;
+    public void setID_ADRESU(int ID_ADRESU) {
+        this.ID_ADRESU = ID_ADRESU;
     }
 
-    public int getIdStanowisko() {
-        return idStanowisko;
+    public int getID_STANOWISKA() {
+        return ID_STANOWISKA;
     }
 
-    public void setIdStanowisko(int idStanowisko) {
-        this.idStanowisko = idStanowisko;
+    public void setID_STANOWISKA(int ID_STANOWISKA) {
+        this.ID_STANOWISKA = ID_STANOWISKA;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "idPracownik=" + idPracownik +
-                ", imie='" + imie + '\'' +
-                ", drugieImie='" + drugieImie + '\'' +
-                ", nazwisko='" + nazwisko + '\'' +
+                "ID_PRACOWNIKA=" + ID_PRACOWNIKA +
+                ", IMIE='" + IMIE + '\'' +
+                ", DRUGIE_IMIE='" + DRUGIE_IMIE + '\'' +
+                ", NAZWISKO='" + NAZWISKO + '\'' +
                 ", PESEL='" + PESEL + '\'' +
-                ", plec='" + plec + '\'' +
-                ", dataZatrudnienia='" + dataZatrudnienia + '\'' +
-                ", numerTel='" + numerTel + '\'' +
-                ", idAdres=" + idAdres +
-                ", idStanowisko=" + idStanowisko +
+                ", PLEC='" + PLEC + '\'' +
+                ", DATA_ZATRUDNIENIA='" + DATA_ZATRUDNIENIA + '\'' +
+                ", NUMER_TELEFONU='" + NUMER_TELEFONU + '\'' +
+                ", ID_ADRESU=" + ID_ADRESU +
+                ", ID_STANOWISKA=" + ID_STANOWISKA +
                 '}';
     }
 }

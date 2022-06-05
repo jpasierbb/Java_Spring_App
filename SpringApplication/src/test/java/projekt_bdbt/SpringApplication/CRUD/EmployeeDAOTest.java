@@ -5,8 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+
 import java.util.List;
-import java.util.Objects;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,9 +18,9 @@ class EmployeeDAOTest extends Object {
     @BeforeEach
     void setUp() {
         DriverManagerDataSource datasource = new DriverManagerDataSource();
-        datasource.setUrl("jdbc:oracle:thin:@127.0.0.1:1521:bdbt");
-        datasource.setUsername("ANDRZEJ");
-        datasource.setPassword("bdbt");
+        datasource.setUrl("jdbc:oracle:thin:@127.0.0.1:1521:ORCL");
+        datasource.setUsername("OPERATOR");
+        datasource.setPassword("operator");
         datasource.setDriverClassName("oracle.jdbc.OracleDriver");
 
         dao = new EmployeeDAO(new JdbcTemplate(datasource));
@@ -34,10 +35,17 @@ class EmployeeDAOTest extends Object {
 
     @Test
     void save() {
+        java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
+        Employee emp = new Employee(0,"Jakub","Jacek","Grabowski","09876512341","M", sqlDate.toString(),"567908123",21,21);
+        dao.save(emp);
     }
 
     @Test
     void get() {
+        int id = 27;
+        Employee employee = dao.get(id);
+
+        assertNotNull(employee);
     }
 
     @Test

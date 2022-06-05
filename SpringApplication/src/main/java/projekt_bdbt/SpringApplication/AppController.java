@@ -3,7 +3,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import projekt_bdbt.SpringApplication.CRUD.Employee;
@@ -13,8 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
+
 @Configuration
 public class AppController implements WebMvcConfigurer {
+
+    @Autowired
+    private EmployeeDAO employeedao;
+
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("index");
@@ -30,14 +39,6 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/main_sprzedawca").setViewName("sprzedawca/main_sprzedawca");
     }
 
-    @Autowired
-    private EmployeeDAO dao;
-    @RequestMapping("/")
-    public String viewHomePage(Model model) {
-        List<Employee> listEmployee = dao.list();
-        model.addAttribute("listEmployee", listEmployee);
-        return "index";
-    }
     @Controller
     public class DashboardController {
         @RequestMapping
@@ -78,6 +79,30 @@ public class AppController implements WebMvcConfigurer {
             }
         }
 
+        //wczytywanie
+        @RequestMapping(value = {"/"})
+        public String showHomePage(Model model) {
+            List<Employee> listEmployee = employeedao.list();
+            model.addAttribute("listEmployee", listEmployee);
+            return "index";
+        }
+
+        //zapisywanie
+        @RequestMapping(value = {"/new"})
+        public String showNewForm(Model model) {
+            Employee employee = new Employee();
+            model.addAttribute("employee", employee);
+            return "CRUD/new_form";
+        }
+        @RequestMapping(value = "/save", method = RequestMethod.POST)
+        public String save(@ModelAttribute("employee") Employee employee) {
+            employeedao.save(employee);
+            return "redirect:/";
+        }
+
+
+
+        //perspektywy
         @RequestMapping(value = {"/main_admin"})
         public String showAdminPage(Model model) {
             return "admin/main_admin";
