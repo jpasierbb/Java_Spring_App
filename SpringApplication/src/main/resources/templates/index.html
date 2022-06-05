@@ -24,6 +24,39 @@
         </div>
     </div>
 </div>
+<div align = "center">
+    <h1>Employees records</h1>
+    <table border = "1" cellpadding = "10">
+        <thead>
+        <tr>
+            <th>idPracownik</th>
+            <th>imie</th>
+            <th>drugieImie</th>
+            <th>nazwisko</th>
+            <th>PESEL</th>
+            <th>plec</th>
+            <th>dataZatrudnienia</th>
+            <th>numerTel</th>
+            <th>idAdres</th>
+            <th>idStanowisko</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each = "employee : ${listEmployee}">
+            <td th:text = "${employee.id}">idPracownik</td>
+            <td th:text = "${employee.imie}">imie</td>
+            <td th:text = "${employee.drugieImie}">drugieImie</td>
+            <td th:text = "${employee.nazwisko}">nazwisko</td>
+            <td th:text = "${employee.PESEL}">PESEL</td>
+            <td th:text = "${employee.plec}">plec</td>
+            <td th:text = "${employee.dataZatrudnienia}">dataZatrudnienia</td>
+            <td th:text = "${employee.numerTel}">numerTel</td>
+            <td th:text = "${employee.idAdres}">idAdres</td>
+            <td th:text = "${employee.idStanowisko}">idStanowisko</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
