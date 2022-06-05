@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj nowe stanowisko</title>
+</head>
+
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div align="center">
+    <h1>Dodaj nowe stanowisko</h1>
+    <br />
+    <form action="#" th:action="@{/savePosition}" th:object="${position}"
+          method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Nazwa:</td>
+                <td><input type="text" th:field="*{NAZWA}" /></td>
+            </tr>
+            <tr>
+                <td>Opis:</td>
+                <td><input type="text" th:field="*{OPIS}" /></td>
+            </tr>
+            <td colspan="2"><button type="submit">Save</button> </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

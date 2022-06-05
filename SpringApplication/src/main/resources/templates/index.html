@@ -102,6 +102,34 @@
     </table>
 </div>
 
+<!-- TABELA STANOWISK -->
+<div align="center">
+    <h1>Stanowiska</h1>
+    <a href="/newPosition">Dodaj nowe stanowisko</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nazwa</th>
+            <th>Opis</th>
+            <th>Akcja</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="position : ${listPosition}">
+            <td th:text="${position.ID_STANOWISKA}">ID</td>
+            <td th:text="${position.NAZWA}">Nazwa</td>
+            <td th:text="${position.OPIS}">Opis</td>
+            <td>
+                <a th:href="@{'/editPosition/' + ${position.ID_STANOWISKA}}">Edytuj</a>
+                <a th:href="@{'/deletePosition/' + ${position.ID_STANOWISKA}}">Usun</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>

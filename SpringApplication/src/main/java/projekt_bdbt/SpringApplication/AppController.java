@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import projekt_bdbt.SpringApplication.CRUD.Address;
-import projekt_bdbt.SpringApplication.CRUD.AddressDAO;
-import projekt_bdbt.SpringApplication.CRUD.Employee;
-import projekt_bdbt.SpringApplication.CRUD.EmployeeDAO;
+import projekt_bdbt.SpringApplication.CRUD.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -27,6 +24,8 @@ public class AppController implements WebMvcConfigurer {
     private EmployeeDAO employeedao;
     @Autowired
     private AddressDAO addressdao;
+    @Autowired
+    private PositionDAO positiondao;
 
 
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -95,6 +94,10 @@ public class AppController implements WebMvcConfigurer {
             List<Address> listAddress = addressdao.list();
             model.addAttribute("listAddress", listAddress);
 
+            //TABELA STANOWISKA
+            List<Position> listPosition = positiondao.list();
+            model.addAttribute("listPosition", listPosition);
+
             return "index";
         }
 
@@ -120,13 +123,11 @@ public class AppController implements WebMvcConfigurer {
             mav.addObject("employee", employee);
             return mav;
         }
-
         @RequestMapping(value = "/updateEmployee", method = RequestMethod.POST)
         public String updateEmployee(@ModelAttribute("employee") Employee employee) {
             employeedao.update(employee);
             return "redirect:/";
         }
-
         //usun
         @RequestMapping("/deleteEmployee/{ID_PRACOWNIKA}")
         public String deleteEmployee(@PathVariable(name = "ID_PRACOWNIKA") int id) {
@@ -168,6 +169,38 @@ public class AppController implements WebMvcConfigurer {
             return "redirect:/";
         }
 
+        //TABELA Stanowiska
+        //zapisywanie
+        @RequestMapping(value = {"/newPosition"})
+        public String showNewFormPosition(Model model) {
+            Position position = new Position();
+            model.addAttribute("position", position);
+            return "CRUD/new_form_position";
+        }
+        @RequestMapping(value = "/savePosition", method = RequestMethod.POST)
+        public String savePosition(@ModelAttribute("position") Position position) {
+            positiondao.save(position);
+            return "redirect:/";
+        }
+        //edycja i update
+        @RequestMapping("/editPosition/{ID_STANOWISKA}")
+        public ModelAndView showEditFormPosition(@PathVariable(name = "ID_STANOWISKA") int id) {
+            ModelAndView mav = new ModelAndView("CRUD/edit_form_position");
+            Position position = positiondao.get(id);
+            mav.addObject("position", position);
+            return mav;
+        }
+        @RequestMapping(value = "/updatePosition", method = RequestMethod.POST)
+        public String updatePosition(@ModelAttribute("position") Position position) {
+            positiondao.update(position);
+            return "redirect:/";
+        }
+        //usun
+        @RequestMapping("/deletePosition/{ID_STANOWISKA}")
+        public String deletePosition(@PathVariable(name = "ID_STANOWISKA") int id) {
+            positiondao.delete(id);
+            return "redirect:/";
+        }
 
 
         //perspektywy
