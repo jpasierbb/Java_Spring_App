@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import projekt_bdbt.SpringApplication.CRUD.Address;
+import projekt_bdbt.SpringApplication.CRUD.AddressDAO;
 import projekt_bdbt.SpringApplication.CRUD.Employee;
 import projekt_bdbt.SpringApplication.CRUD.EmployeeDAO;
 
@@ -23,6 +25,8 @@ public class AppController implements WebMvcConfigurer {
 
     @Autowired
     private EmployeeDAO employeedao;
+    @Autowired
+    private AddressDAO addressdao;
 
 
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -79,48 +83,91 @@ public class AppController implements WebMvcConfigurer {
             }
         }
 
-        //wczytywanie
+
+        //wczytywanie danych do tabel na index
         @RequestMapping(value = {"/"})
         public String showHomePage(Model model) {
+            //TABELA PRACOWNICY
             List<Employee> listEmployee = employeedao.list();
             model.addAttribute("listEmployee", listEmployee);
+
+            //TABELA ADRESOW
+            List<Address> listAddress = addressdao.list();
+            model.addAttribute("listAddress", listAddress);
+
             return "index";
         }
 
+        //TABELA PRACOWNIKOW
         //zapisywanie
-        @RequestMapping(value = {"/new"})
-        public String showNewForm(Model model) {
+        @RequestMapping(value = {"/newEmployee"})
+        public String showNewFormEmployee(Model model) {
             Employee employee = new Employee();
             model.addAttribute("employee", employee);
-            return "CRUD/new_form";
+            return "CRUD/new_form_employee";
         }
-        @RequestMapping(value = "/save", method = RequestMethod.POST)
-        public String save(@ModelAttribute("employee") Employee employee) {
+        @RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
+        public String saveEmployee(@ModelAttribute("employee") Employee employee) {
             employeedao.save(employee);
             return "redirect:/";
         }
 
         //edycja i update
-        @RequestMapping("/edit/{ID_PRACOWNIKA}")
-        public ModelAndView showEditForm(@PathVariable(name = "ID_PRACOWNIKA") int ID_PRACOWNIKA) {
-            ModelAndView mav = new ModelAndView("CRUD/edit_form");
-            Employee employee = employeedao.get(ID_PRACOWNIKA);
+        @RequestMapping("/editEmployee/{ID_PRACOWNIKA}")
+        public ModelAndView showEditFormEmployee(@PathVariable(name = "ID_PRACOWNIKA") int id) {
+            ModelAndView mav = new ModelAndView("CRUD/edit_form_employee");
+            Employee employee = employeedao.get(id);
             mav.addObject("employee", employee);
             return mav;
         }
 
-        @RequestMapping(value = "/update", method = RequestMethod.POST)
-        public String update(@ModelAttribute("employee") Employee employee) {
+        @RequestMapping(value = "/updateEmployee", method = RequestMethod.POST)
+        public String updateEmployee(@ModelAttribute("employee") Employee employee) {
             employeedao.update(employee);
             return "redirect:/";
         }
 
         //usun
-        @RequestMapping("/delete/{ID_PRACOWNIKA}")
-        public String delete(@PathVariable(name = "ID_PRACOWNIKA") int id) {
+        @RequestMapping("/deleteEmployee/{ID_PRACOWNIKA}")
+        public String deleteEmployee(@PathVariable(name = "ID_PRACOWNIKA") int id) {
             employeedao.delete(id);
             return "redirect:/";
         }
+
+
+        //TABELA ADRESY
+        //zapisywanie
+        @RequestMapping(value = {"/newAddress"})
+        public String showNewFormAddress(Model model) {
+            Address address = new Address();
+            model.addAttribute("address", address);
+            return "CRUD/new_form_address";
+        }
+        @RequestMapping(value = "/saveAddress", method = RequestMethod.POST)
+        public String saveAddress(@ModelAttribute("address") Address address) {
+            addressdao.save(address);
+            return "redirect:/";
+        }
+        //edycja i update
+        @RequestMapping("/editAddress/{ID_ADRESU}")
+        public ModelAndView showEditFormAddress(@PathVariable(name = "ID_ADRESU") int id) {
+            ModelAndView mav = new ModelAndView("CRUD/edit_form_address");
+            Address address = addressdao.get(id);
+            mav.addObject("address", address);
+            return mav;
+        }
+        @RequestMapping(value = "/updateAddress", method = RequestMethod.POST)
+        public String updateAddress(@ModelAttribute("address") Address address) {
+            addressdao.update(address);
+            return "redirect:/";
+        }
+        //usun
+        @RequestMapping("/deleteAddress/{ID_ADRESU}")
+        public String deleteAddress(@PathVariable(name = "ID_ADRESU") int id) {
+            addressdao.delete(id);
+            return "redirect:/";
+        }
+
 
 
         //perspektywy

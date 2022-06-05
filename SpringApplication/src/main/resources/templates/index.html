@@ -27,9 +27,11 @@
     </div>
 </div>
 
+
+<!-- TABELA PRACOWNIKOW -->
 <div align="center">
     <h1>Pracownicy</h1>
-    <a href="/new">Dodaj nowego pracownika</a>
+    <a href="/newEmployee">Dodaj nowego pracownika</a>
     <br/><br/>
     <table border="1" cellpadding="10">
         <thead>
@@ -60,8 +62,40 @@
             <td th:text="${employee.ID_ADRESU}">ID Adresu</td>
             <td th:text="${employee.ID_STANOWISKA}">ID Stanowiska</td>
             <td>
-                <a th:href="@{'/edit/' + ${employee.ID_PRACOWNIKA}}">Edytuj</a>
-                <a th:href="@{'/delete/' + ${employee.ID_PRACOWNIKA}}">Usun</a>
+                <a th:href="@{'/editEmployee/' + ${employee.ID_PRACOWNIKA}}">Edytuj</a>
+                <a th:href="@{'/deleteEmployee/' + ${employee.ID_PRACOWNIKA}}">Usun</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- TABELA ADRESOW -->
+<div align="center">
+    <h1>Adresy</h1>
+    <a href="/newAddress">Dodaj nowy Adres</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Miejscowosc</th>
+            <th>Ulica</th>
+            <th>Numer Budynku</th>
+            <th>Numer Lokalu</th>
+            <th>Akcja</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="address : ${listAddress}">
+            <td th:text="${address.ID_ADRESU}">ID</td>
+            <td th:text="${address.MIEJSCOWOSC}">Miejscowosc</td>
+            <td th:text="${address.ULICA}">Ulica</td>
+            <td th:text="${address.NUMER_BUDYNKU}">Numer Budynku</td>
+            <td th:text="${address.NUMER_LOKALU}">Numer Lokalu</td>
+            <td>
+                <a th:href="@{'/editAddress/' + ${address.ID_ADRESU}}">Edytuj</a>
+                <a th:href="@{'/deleteAddress/' + ${address.ID_ADRESU}}">Usun</a>
             </td>
         </tr>
         </tbody>

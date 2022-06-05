@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Dodaj nowego pracownika</title>
@@ -10,7 +12,7 @@
 <div align="center">
   <h1>Dodaj nowego pracownika</h1>
   <br />
-  <form action="#" th:action="@{/save}" th:object="${employee}"
+  <form action="#" th:action="@{/saveEmployee}" th:object="${employee}"
         method="post">
 
     <table border="0" cellpadding="10">

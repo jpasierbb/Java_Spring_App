@@ -63,6 +63,4 @@ public class EmployeeDAO {
         String sql = "DELETE FROM PRACOWNICY WHERE ID_PRACOWNIKA = ?";
         jdbcTemplate.update(sql, id);
     }
-
-
 }
