@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>header</title>
+  <meta charset="UTF-8"/>
+  <title>header</title>
 
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment = "header">
-    <div class="container">
-        <a class="navbar-brand" href="/">Operator sieci komórkowej</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
+  <div class="container">
+    <a class="navbar-brand" href="/">Operator sieci komórkowej</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
 
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" th:href="@{/main}">Main</a>
-                </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" th:inline="text">You are logged in as <b
-                            style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
-                </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <form method="post" th:action="@{/index}">
-                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Log out</button>
-                    </form>
+        <li sec:authorize="isAuthenticated()" class="nav-item active">
+          <a class="nav-link" th:href="@{/main}">Main</a>
+        </li>
+        <li sec:authorize="isAuthenticated()" class="nav-item active">
+          <a class="nav-link" th:inline="text">You are logged in as <b
+                  style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+        </li>
+        <li sec:authorize="isAuthenticated()" class="nav-item active">
+          <form method="post" th:action="@{/index}">
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Log out</button>
+          </form>
 
-                </li>
-                <li sec:authorize="!isAuthenticated()" class="nav-item">
-                    <a class="btn btn-outline-warning my-2 my-sm-0" href="/login" role="button">Log in</a>
-                </li>
+        </li>
+        <li sec:authorize="!isAuthenticated()" class="nav-item active">
+          <a class="btn btn-outline-warning my-2 my-sm-0" href="/login" role="button">Log in</a>
+        </li>
 
-            </ul>
-        </div>
+      </ul>
     </div>
+  </div>
 </nav>
 </body>
 </html>
