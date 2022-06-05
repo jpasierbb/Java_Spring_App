@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,18 +44,24 @@ public class EmployeeDAO {
 
     /* Read – odczytywanie danych z bazy */
     public projekt_bdbt.SpringApplication.CRUD.Employee get(int id) {
-        String sql = "SELECT * FROM PRACOWNICY WHERE ID_PRACOWNIKA = ?";
         Object[] args = {id};
+        String sql = "SELECT * FROM PRACOWNICY WHERE ID_PRACOWNIKA = ?";
         Employee employee = jdbcTemplate.queryForObject(sql, args,
                 BeanPropertyRowMapper.newInstance(Employee.class));
         return employee;
     }
 
     /* Update – aktualizacja danych */
-    public void update(projekt_bdbt.SpringApplication.CRUD.Employee sale) {
+    public void update(projekt_bdbt.SpringApplication.CRUD.Employee employee) {
+        String sql = "UPDATE PRACOWNICY SET NUMER_TELEFONU=:NUMER_TELEFONU, ID_ADRESU=:ID_ADRESU, ID_STANOWISKA=:ID_STANOWISKA WHERE ID_PRACOWNIKA=:ID_PRACOWNIKA";
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(employee);
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+        template.update(sql, param);
     }
     /* Delete – wybrany rekord z danym id */
     public void delete(int id) {
+        String sql = "DELETE FROM PRACOWNICY WHERE ID_PRACOWNIKA = ?";
+        jdbcTemplate.update(sql, id);
     }
 
 

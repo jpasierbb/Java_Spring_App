@@ -44,15 +44,25 @@ class EmployeeDAOTest extends Object {
     void get() {
         int id = 27;
         Employee employee = dao.get(id);
+        System.out.println(employee);
 
         assertNotNull(employee);
     }
 
     @Test
     void update() {
+        Employee emp = new Employee();
+        emp.setID_PRACOWNIKA(29);
+        emp.setNUMER_TELEFONU("420692137");
+        emp.setID_ADRESU(22);
+        emp.setID_STANOWISKA(22);
+
+        dao.update(emp);
     }
 
     @Test
     void delete() {
+        int id = 30;
+        dao.delete(id);
     }
 }

@@ -59,6 +59,10 @@
             <td th:text="${employee.NUMER_TELEFONU}">Numer Telefonu</td>
             <td th:text="${employee.ID_ADRESU}">ID Adresu</td>
             <td th:text="${employee.ID_STANOWISKA}">ID Stanowiska</td>
+            <td>
+                <a th:href="@{'/edit/' + ${employee.ID_PRACOWNIKA}}">Edytuj</a>
+                <a th:href="@{'/delete/' + ${employee.ID_PRACOWNIKA}}">Usun</a>
+            </td>
         </tr>
         </tbody>
     </table>

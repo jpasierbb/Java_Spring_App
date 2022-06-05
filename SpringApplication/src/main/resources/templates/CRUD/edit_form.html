@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Edycja danych pracownika</title>
+</head>
+<body>
+<div align="center">
+    <h1>Edycja danych pracownika</h1>
+    <br />
+    <form action="#" th:action="@{/update}" th:object="${employee}"
+          method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>ID:</td>
+                <td><input type="text" th:field="*{ID_PRACOWNIKA}" readonly="readonly" /></td>
+            </tr>
+            <tr>
+                <td>Numer Telefonu:</td>
+                <td><input type="text" th:field="*{NUMER_TELEFONU}" /></td>
+            </tr>
+            <tr>
+                <td>Adres:</td>
+                <td><input type="text" th:field="*{ID_ADRESU}" /></td>
+            </tr>
+            <tr>
+                <td>Stanowisko:</td>
+                <td><input type="text" th:field="*{ID_STANOWISKA}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Save</button> </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>

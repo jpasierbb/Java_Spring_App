@@ -100,6 +100,27 @@ public class AppController implements WebMvcConfigurer {
             return "redirect:/";
         }
 
+        //edycja i update
+        @RequestMapping("/edit/{ID_PRACOWNIKA}")
+        public ModelAndView showEditForm(@PathVariable(name = "ID_PRACOWNIKA") int ID_PRACOWNIKA) {
+            ModelAndView mav = new ModelAndView("CRUD/edit_form");
+            Employee employee = employeedao.get(ID_PRACOWNIKA);
+            mav.addObject("employee", employee);
+            return mav;
+        }
+
+        @RequestMapping(value = "/update", method = RequestMethod.POST)
+        public String update(@ModelAttribute("employee") Employee employee) {
+            employeedao.update(employee);
+            return "redirect:/";
+        }
+
+        //usun
+        @RequestMapping("/delete/{ID_PRACOWNIKA}")
+        public String delete(@PathVariable(name = "ID_PRACOWNIKA") int id) {
+            employeedao.delete(id);
+            return "redirect:/";
+        }
 
 
         //perspektywy
