@@ -30,7 +30,7 @@ public class PositionDAO {
         return listPosition;
     }
 
-    public void save(projekt_bdbt.SpringApplication.CRUD.Position pos) {
+    public void save(Position pos) {
         SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
         insertActor.withTableName("STANOWISKA").usingColumns("NAZWA","OPIS");
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(pos);
@@ -38,7 +38,7 @@ public class PositionDAO {
         insertActor.execute(param);
     }
 
-    public projekt_bdbt.SpringApplication.CRUD.Position get(int id) {
+    public Position get(int id) {
         Object[] args = {id};
         String sql = "SELECT * FROM STANOWISKA WHERE ID_STANOWISKA = ?";
         Position addr = jdbcTemplate.queryForObject(sql, args,
@@ -46,7 +46,7 @@ public class PositionDAO {
         return addr;
     }
 
-    public void update(projekt_bdbt.SpringApplication.CRUD.Position pos) {
+    public void update(Position pos) {
         String sql = "UPDATE STANOWISKA SET NAZWA=:NAZWA, OPIS=:OPIS WHERE ID_STANOWISKA=:ID_STANOWISKA";
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(pos);
         NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);

@@ -9,7 +9,9 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DateFormat;
 import java.util.List;
+import java.lang.Object;
 
 @Repository
 @Transactional
@@ -43,7 +45,7 @@ public class EmployeeDAO {
     }
 
     /* Read – odczytywanie danych z bazy */
-    public projekt_bdbt.SpringApplication.CRUD.Employee get(int id) {
+    public Employee get(int id) {
         Object[] args = {id};
         String sql = "SELECT * FROM PRACOWNICY WHERE ID_PRACOWNIKA = ?";
         Employee employee = jdbcTemplate.queryForObject(sql, args,
@@ -52,7 +54,7 @@ public class EmployeeDAO {
     }
 
     /* Update – aktualizacja danych */
-    public void update(projekt_bdbt.SpringApplication.CRUD.Employee employee) {
+    public void update(Employee employee) {
         String sql = "UPDATE PRACOWNICY SET NUMER_TELEFONU=:NUMER_TELEFONU, ID_ADRESU=:ID_ADRESU, ID_STANOWISKA=:ID_STANOWISKA WHERE ID_PRACOWNIKA=:ID_PRACOWNIKA";
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(employee);
         NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
