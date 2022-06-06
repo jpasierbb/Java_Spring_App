@@ -31,13 +31,12 @@ public class ClientDAO {
                 "ON k.ID_KLIENTA=o.ID_KLIENTA";
 
         List<Client> listClient = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Client.class));
-        int index = listClient.size();
         return listClient;
     }
 
     public void save(Client pos) {
         String sql = "SELECT Max(ID_KLIENTA) FROM KLIENCI";
-        int maxID = jdbcTemplate.queryForObject( sql, int.class);
+        int maxID = jdbcTemplate.queryForObject(sql, int.class);
 
         SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
         insertActor.withTableName("KLIENCI").usingColumns("NUMER_TELEFONU","ID_ADRESU");
