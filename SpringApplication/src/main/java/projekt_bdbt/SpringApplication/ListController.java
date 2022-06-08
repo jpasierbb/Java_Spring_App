@@ -28,7 +28,8 @@ public class ListController {
             pageid=(pageid-1)*total+1;
         }
         List<Employee> list = employeedao.getEmployeesByPage(pageid,total);
-        int maxPage = (list.size()/total)+1;
+        System.out.println(employeedao.getSize());
+        int maxPage = (int) (Math.ceil((employeedao.getSize()/total))+1);
         model.addAttribute("listEmployee",list);
         model.addAttribute("maxPage",maxPage);
 
