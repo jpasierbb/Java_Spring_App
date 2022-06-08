@@ -40,6 +40,7 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/main_konsultant").setViewName("konsultant/main_konsultant");
         registry.addViewController("/main_pracownik").setViewName("pracownik/main_pracownik");
         registry.addViewController("/main_sprzedawca").setViewName("sprzedawca/main_sprzedawca");
+        registry.addViewController("/pracownicy").setViewName("operator/pracownicy");
     }
 
     @Controller
@@ -83,22 +84,15 @@ public class AppController implements WebMvcConfigurer {
         }
 
 
+
+
         //wczytywanie danych do tabel na index
-        @RequestMapping(value = {"/"})
-        public String showHomePage(Model model) {
-            //TABELA PRACOWNICY
+        @RequestMapping(value = {"/index"})
+        public String showEmployees(Model model){
             List<Employee> listEmployee = employeedao.list();
             model.addAttribute("listEmployee", listEmployee);
+            return "/";
 
-            //TABELA ADRESOW
-            List<Address> listAddress = addressdao.list();
-            model.addAttribute("listAddress", listAddress);
-
-            //TABELA STANOWISKA
-            List<Position> listPosition = positiondao.list();
-            model.addAttribute("listPosition", listPosition);
-
-            return "index";
         }
 
         //TABELA PRACOWNIKOW
@@ -130,9 +124,10 @@ public class AppController implements WebMvcConfigurer {
         }
         //usun
         @RequestMapping("/deleteEmployee/{ID_PRACOWNIKA}")
-        public String deleteEmployee(@PathVariable(name = "ID_PRACOWNIKA") int id) {
+        public String deleteEmployee(@PathVariable(name = "ID_PRACOWNIKA") int id, HttpServletRequest request) {
             employeedao.delete(id);
-            return "redirect:/";
+            String referer = request.getHeader("Referer");
+            return "redirect:"+referer;
         }
 
 

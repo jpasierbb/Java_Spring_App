@@ -1,6 +1,9 @@
 package projekt_bdbt.SpringApplication.CRUD;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -29,6 +32,10 @@ public class EmployeeDAO {
 
         List<Employee> listEmployee = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Employee.class));
         return listEmployee;
+    }
+    public List<Employee> getEmployeesByPage(int pageid, int total){
+        String sql = "SELECT * FROM PRACOWNICY ORDER BY ID_PRACOWNIKA OFFSET "+(pageid-1)+" ROWS FETCH NEXT "+total+" ROWS ONLY";
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Employee.class));
     }
 
     /* Create – wstawianie nowego wiersza do bazy */
