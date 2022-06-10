@@ -30,7 +30,7 @@ public class AddressDAO {
         return listAddress;
     }
 
-    public void save(projekt_bdbt.SpringApplication.CRUD.Address addr) {
+    public void save(Address addr) {
         SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
         insertActor.withTableName("ADRESY").usingColumns("MIEJSCOWOSC","ULICA","NUMER_BUDYNKU","NUMER_LOKALU");
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(addr);
@@ -38,7 +38,7 @@ public class AddressDAO {
         insertActor.execute(param);
     }
 
-    public projekt_bdbt.SpringApplication.CRUD.Address get(int id) {
+    public Address get(int id) {
         Object[] args = {id};
         String sql = "SELECT * FROM ADRESY WHERE ID_ADRESU = ?";
         Address addr = jdbcTemplate.queryForObject(sql, args,
@@ -46,7 +46,7 @@ public class AddressDAO {
         return addr;
     }
 
-    public void update(projekt_bdbt.SpringApplication.CRUD.Address addr) {
+    public void update(Address addr) {
         String sql = "UPDATE ADRESY SET MIEJSCOWOSC=:MIEJSCOWOSC, ULICA=:ULICA, NUMER_BUDYNKU=:NUMER_BUDYNKU, NUMER_LOKALU=:NUMER_LOKALU WHERE ID_ADRESU=:ID_ADRESU";
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(addr);
         NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);

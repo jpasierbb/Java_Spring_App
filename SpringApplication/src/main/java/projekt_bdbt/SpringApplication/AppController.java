@@ -26,6 +26,8 @@ public class AppController implements WebMvcConfigurer {
     private AddressDAO addressdao;
     @Autowired
     private PositionDAO positiondao;
+    @Autowired
+    private ClientDAO clientdao;
 
 
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -196,6 +198,41 @@ public class AppController implements WebMvcConfigurer {
             positiondao.delete(id);
             return "redirect:/";
         }
+
+        //TABELA KLIENCI
+        //zapisywanie
+        @RequestMapping(value = {"/newClient"})
+        public String showNewFormClient(Model model) {
+            Client client = new Client();
+            model.addAttribute("client", client);
+            return "CRUD/new_form_client";
+        }
+        @RequestMapping(value = "/saveClient", method = RequestMethod.POST)
+        public String saveClient(@ModelAttribute("client") Client client) {
+            clientdao.save(client);
+            return "redirect:/";
+        }
+
+        //edycja i update
+        @RequestMapping("/editClient/{ID_Klienta}")
+        public ModelAndView showEditFormClient(@PathVariable(name = "ID_Klienta") int id) {
+            ModelAndView mav = new ModelAndView("CRUD/edit_form_client");
+            Client client = clientdao.get(id);
+            mav.addObject("client", client);
+            return mav;
+        }
+        @RequestMapping(value = "/updateClient", method = RequestMethod.POST)
+        public String updateClient(@ModelAttribute("client") Client client) {
+            clientdao.update(client);
+            return "redirect:/";
+        }
+        //usun
+        @RequestMapping("/deleteClient/{ID_Klienta}")
+        public String deleteClient(@PathVariable(name = "ID_Klienta") int id) {
+            clientdao.delete(id);
+            return "redirect:/";
+        }
+
 
 
         //perspektywy

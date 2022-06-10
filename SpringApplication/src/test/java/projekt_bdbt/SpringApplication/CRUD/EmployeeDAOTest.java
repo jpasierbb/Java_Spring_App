@@ -52,7 +52,13 @@ class EmployeeDAOTest extends Object {
     @Test
     void update() {
         Employee emp = new Employee();
-        emp.setID_PRACOWNIKA(29);
+        emp.setID_PRACOWNIKA(31);
+        emp.setIMIE("Monika");
+        emp.setDRUGIE_IMIE("");
+        emp.setNAZWISKO("Dang");
+        emp.setPESEL("25896314702");
+        emp.setPLEC("K");
+        emp.setDATA_ZATRUDNIENIA("06-06-2022");
         emp.setNUMER_TELEFONU("420692137");
         emp.setID_ADRESU(22);
         emp.setID_STANOWISKA(22);
