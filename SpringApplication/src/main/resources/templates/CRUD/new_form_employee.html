@@ -26,23 +26,23 @@
           <tbody>
           <tr>
             <th scope="row">Imię</th>
-            <td><input th:type="text" type="text" th:field="*{IMIE}" /></td>
+            <td><input class="form-control" th:type="text" type="text" th:field="*{IMIE}" /></td>
           </tr>
           <tr>
             <th scope="row">Drugie Imię</th>
-            <td> <input th:type="text" th:field="*{DRUGIE_IMIE}"/></td>
+            <td> <input class="form-control" th:type="text" th:field="*{DRUGIE_IMIE}"/></td>
           </tr>
           <tr>
             <th scope="row">Nazwisko</th>
-            <td> <input th:type="text" th:field="*{NAZWISKO}"/></td>
+            <td> <input class="form-control" th:type="text" th:field="*{NAZWISKO}"/></td>
           </tr>
           <tr>
             <th scope="row">PESEL</th>
-            <td> <input th:type="text" th:field="*{PESEL}"/></td>
+            <td> <input class="form-control" th:type="text" th:field="*{PESEL}"/></td>
           </tr>
           <tr>
             <th scope="row">Płeć</th>
-            <td> <input th:type="text" th:field="*{PLEC}"/></td>
+            <td> <input class="form-control" th:type="text" th:field="*{PLEC}"/></td>
           </tr>
           </tbody>
         </table>
@@ -59,16 +59,12 @@
           </thead>
           <tbody>
           <tr>
-            <th scope="row">ID Stanowiska</th>
-            <td> <input th:type="text" th:field="*{ID_STANOWISKA}"/></td>
-          </tr>
-          <tr>
             <th scope="row">Nazwa stanowiska</th>
-            <td> <input th:type="text" th:field="*{NAZWA}"/></td>
-          </tr>
-          <tr>
-            <th scope="row">Opis Stanowiska</th>
-            <td> <input th:type="text" th:field="*{OPIS}"/></td>
+            <td>
+              <select id="nazw_stan" class="custom-select" th:field="*{NAZWA}">
+              <option th:each="position : ${positionsList}" th:value="${position.NAZWA} " th:text="${position.NAZWA + ' (ID: ' + position.ID_STANOWISKA + ')'}"></option>
+              </select>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -86,19 +82,19 @@
           <tbody>
           <tr>
             <th scope="row">Ulica</th>
-            <td> <input th:type="text" th:field="*{ULICA}"/> </td>
+            <td> <input class="form-control" th:type="text" th:field="*{ULICA}"/> </td>
           </tr>
           <tr>
             <th scope="row">Miejscowość</th>
-            <td> <input th:type="text" th:field="*{MIEJSCOWOSC}"/></td>
+            <td> <input class="form-control" th:type="text" th:field="*{MIEJSCOWOSC}"/></td>
           </tr>
           <tr>
             <th scope="row">Numer budynku</th>
-            <td> <input th:type="text" th:field="*{NUMER_BUDYNKU}"/></td>
+            <td> <input class="form-control" th:type="text" th:field="*{NUMER_BUDYNKU}"/></td>
           </tr>
           <tr>
             <th scope="row">Numer lokalu</th>
-            <td> <input th:type="text" th:field="*{NUMER_LOKALU}"/></td>
+            <td> <input class="form-control" th:type="text" th:field="*{NUMER_LOKALU}"/></td>
           </tr>
           </tbody>
         </table>

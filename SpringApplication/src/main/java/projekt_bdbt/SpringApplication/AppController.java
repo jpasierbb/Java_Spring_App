@@ -106,7 +106,7 @@ public class AppController implements WebMvcConfigurer {
             EmployeeJoined employee = new EmployeeJoined();
             List<Position> positions = positiondao.list();
             model.addAttribute("employee", employee);
-            model.addAttribute("positions",positions);
+            model.addAttribute("positionsList",positions);
             return "CRUD/new_form_employee";
         }
         @RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
