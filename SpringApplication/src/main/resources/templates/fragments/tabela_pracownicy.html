@@ -29,8 +29,8 @@
         <td th:text="${employee.NUMER_TELEFONU}">Numer Telefonu</td>
         <td>
             <a th:href="@{'/editEmployee/' + ${employee.ID_PRACOWNIKA}}" class="badge badge-dark">Edytuj</a>
-            <a th:href="@{'/deleteEmployee/' + ${employee.ID_PRACOWNIKA}}" class="badge badge-dark">Usun</a>
-            <a th:href="@{'/pracownik/'}" class="badge badge-warning">Zobacz Wiecej</a>
+            <a th:href="@{/deleteEmployee/(id=${employee.ID_PRACOWNIKA})}" class="badge badge-dark" onclick="return confirmDelete()">Usuń</a>
+            <a th:href="@{'/pracownik/' + ${employee.ID_PRACOWNIKA}}" class="badge badge-warning">Zobacz Wiecej</a>
         </td>
     </tr>
     </tbody>

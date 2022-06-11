@@ -1,10 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>pracownik_view</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
+<div class="container" th:fragment="pracownik">
+    <div class="text-left">
+        <img width="150px" th:src="@{/images/user-xxl.png}" />
+    </div>
+    <label class="text-center" style="font-size:30px" th:text="${'Pracownik ' + employee.IMIE + ' ' + employee.DRUGIE_IMIE + ' ' + employee.NAZWISKO}"></label>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table" style="table-layout: fixed">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Dane Osobowe</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">ID</th>
+                    <td th:text="${employee.ID_PRACOWNIKA}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Imię</th>
+                    <td th:text="${employee.IMIE}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Drugie Imię</th>
+                    <td th:text="${employee.DRUGIE_IMIE}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Nazwisko</th>
+                    <td th:text="${employee.NAZWISKO}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">PESEL</th>
+                    <td th:text="${employee.PESEL}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Płeć</th>
+                    <td th:text="${employee.PLEC}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table" style="table-layout: fixed">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Stanowisko</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">ID Stanowiska</th>
+                    <td th:text="${employee.ID_STANOWISKA}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Nazwa stanowiska</th>
+                    <td th:text="${employee.NAZWA}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Opis Stanowiska</th>
+                    <td th:text="${employee.OPIS}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table" style="table-layout: fixed">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Adres</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">Ulica</th>
+                    <td th:text="${employee.ULICA}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Miejscowość</th>
+                    <td th:text="${employee.MIEJSCOWOSC}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Numer budynku</th>
+                    <td th:text="${employee.NUMER_BUDYNKU}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Numer lokalu</th>
+                    <td th:text="${employee.NUMER_LOKALU}"></td>
+                </tr>
+                </tbody>
+            </table>
 
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <div class="btn-group" role="group">
+                <a class="btn btn-dark" th:href="@{'/editEmployee/' + ${employee.ID_PRACOWNIKA}}">Edytuj Pracownika</a>
+                <a class="btn btn-dark" onclick="return confirmDelete()" th:href="@{/deleteEmployee/(id=${employee.ID_PRACOWNIKA})}">Usuń Pracownika</a>
+            </div>
+            <a class="btn btn-warning" th:href="@{/pracownicy/1}">Wróć</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

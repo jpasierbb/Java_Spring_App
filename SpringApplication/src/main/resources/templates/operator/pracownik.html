@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8"/>
+    <title>Pracownicy</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link  th:href="@{/css/stylesheet.css}" th:rel="stylesheet"/>
 </head>
 <body>
-$END$
+
+
+<div th:insert="fragments/header :: header"></div>
+<div th:insert="/fragments/pracownik_view :: pracownik"></div>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
 </body>
 </html>

@@ -3,10 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -28,6 +25,8 @@ public class AppController implements WebMvcConfigurer {
     private PositionDAO positiondao;
     @Autowired
     private ClientDAO clientdao;
+    @Autowired
+    private EmployeeJoinedDAO employeeJoinedDAO;
 
 
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -43,7 +42,7 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/main_pracownik").setViewName("pracownik/main_pracownik");
         registry.addViewController("/main_sprzedawca").setViewName("sprzedawca/main_sprzedawca");
         registry.addViewController("/pracownicy/**").setViewName("operator/pracownicy");
-        registry.addViewController("/pracownik");
+        registry.addViewController("/pracownik/**").setViewName("operator/pracownik");
     }
 
     @Controller
@@ -104,14 +103,16 @@ public class AppController implements WebMvcConfigurer {
         //zapisywanie
         @RequestMapping(value = {"/newEmployee"})
         public String showNewFormEmployee(Model model) {
-            Employee employee = new Employee();
+            EmployeeJoined employee = new EmployeeJoined();
+            List<Position> positions = positiondao.list();
             model.addAttribute("employee", employee);
+            model.addAttribute("positions",positions);
             return "CRUD/new_form_employee";
         }
         @RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
-        public String saveEmployee(@ModelAttribute("employee") Employee employee) {
-            employeedao.save(employee);
-            return "redirect:/";
+        public String saveEmployee(@ModelAttribute("employee") EmployeeJoined employee) {
+            employeeJoinedDAO.save(employee);
+            return "redirect:/pracownicy/1";
         }
 
         //edycja i update
@@ -128,11 +129,10 @@ public class AppController implements WebMvcConfigurer {
             return "redirect:/";
         }
         //usun
-        @RequestMapping("/deleteEmployee/{ID_PRACOWNIKA}")
-        public String deleteEmployee(@PathVariable(name = "ID_PRACOWNIKA") int id, HttpServletRequest request) {
+        @RequestMapping("/deleteEmployee")
+        public String deleteEmployee(@RequestParam int id) {
             employeedao.delete(id);
-            String referer = request.getHeader("Referer");
-            return "redirect:"+referer;
+            return "redirect:/pracownicy";
         }
 
 

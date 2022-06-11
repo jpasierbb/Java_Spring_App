@@ -1,6 +1,7 @@
 package projekt_bdbt.SpringApplication;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import projekt_bdbt.SpringApplication.CRUD.*;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,9 +47,16 @@ public class ListController {
     public String getEmployees(){
         return "redirect:/pracownicy/1";
     }
-    @GetMapping("/pracownik")
-    public String getEmployee(Model model, @RequestParam(value = "id", required = true) String id){
-        return "/index";
+    @GetMapping("/pracownik/{id}")
+    public String getEmployee(Model model, @PathVariable(value = "id") int id){
+        try {
+            EmployeeJoined employeeJoined = employeeJoinedDAO.get(id);
+            model.addAttribute("employee",employeeJoined);
+            return "operator/pracownik";
+        }
+        catch (EmptyResultDataAccessException err){
+            return "errors/404";
+        }
     }
 
 }

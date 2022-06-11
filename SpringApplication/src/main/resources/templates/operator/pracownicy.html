@@ -12,28 +12,21 @@
 
 <div th:insert="fragments/header :: header"></div>
 <div class="container">
+    <div class="row">
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="text-center">
-                    <img class="ml-auto" width="150px" th:src="@{/images/pracownicy_logo.png}" />
-                    <label style="font-size:30px" th:inline="text">PRACOWNICY</label>
-                </div>
+    </div>
+    <div class="text-left">
+        <img alt="employees logo" style="padding: 10px" src="#" width="200px" th:src="@{/images/pracownicy_logo.png}" />
+    </div>
+    <label style="font-size:30px" th:inline="text">PRACOWNICY</label>
 
-
-            </div>
-
+    <div class="row">
+        <div class="col-sm-12">
+            <a class="btn btn-warning" th:href="@{/newEmployee}">Dodaj pracownika</a>
+            <div th:insert="fragments/tabela_pracownicy :: tabela"></div>
+            <div th:insert="fragments/table_nav :: tabela_nav"></div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <form method="get" th:action="@{newEmployee}">
-                    <button class="btn btn-warning" type="submit" value="Dodaj">Dodaj pracownika
-                    </button>
-                </form>
-                <div th:insert="fragments/tabela_pracownicy :: tabela"></div>
-                <div th:insert="fragments/table_nav :: tabela_nav"></div>
-            </div>
-        </div>
+    </div>
 </div>
 
 

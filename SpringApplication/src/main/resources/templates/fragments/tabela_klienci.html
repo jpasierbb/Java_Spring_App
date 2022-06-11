@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>tabela_klienci</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+
+<table class="table table-striped">
+    <thead>
+    <tr class="bg-warning">
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="client : ${listClient}">
+        <td>${client.}</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>
