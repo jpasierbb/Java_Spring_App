@@ -39,6 +39,10 @@ public class EmployeeDAO {
         String sql = "SELECT * FROM PRACOWNICY ORDER BY ID_PRACOWNIKA OFFSET "+(pageid-1)+" ROWS FETCH NEXT "+total+" ROWS ONLY";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Employee.class));
     }
+    public int getSize(){
+        String sql = "SELECT COUNT(*) FROM PRACOWNICY";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
 
     /* Create – wstawianie nowego wiersza do bazy */
     public void save(projekt_bdbt.SpringApplication.CRUD.Employee emp) {

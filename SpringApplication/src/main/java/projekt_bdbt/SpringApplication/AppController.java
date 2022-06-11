@@ -42,7 +42,8 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/main_konsultant").setViewName("konsultant/main_konsultant");
         registry.addViewController("/main_pracownik").setViewName("pracownik/main_pracownik");
         registry.addViewController("/main_sprzedawca").setViewName("sprzedawca/main_sprzedawca");
-        registry.addViewController("/pracownicy").setViewName("operator/pracownicy");
+        registry.addViewController("/pracownicy/**").setViewName("operator/pracownicy");
+        registry.addViewController("/pracownik");
     }
 
     @Controller
@@ -88,13 +89,15 @@ public class AppController implements WebMvcConfigurer {
 
 
 
-        //wczytywanie danych do tabel na index
-        @RequestMapping(value = {"/index"})
-        public String showEmployees(Model model){
+        @RequestMapping(value = {"/"})
+        public String showHomePage(Model model){
             List<Employee> listEmployee = employeedao.list();
             model.addAttribute("listEmployee", listEmployee);
-            return "/";
-
+            return "index";
+        }
+        @RequestMapping(value = "/index")
+        public String showHomePage(){
+            return "redirect:/";
         }
 
         //TABELA PRACOWNIKOW

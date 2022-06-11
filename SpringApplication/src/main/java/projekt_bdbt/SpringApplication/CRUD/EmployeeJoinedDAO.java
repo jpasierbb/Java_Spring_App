@@ -33,6 +33,15 @@ public class EmployeeJoinedDAO {
         List<EmployeeJoined> listEmployeeJoined = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(EmployeeJoined.class));
         return listEmployeeJoined;
     }
+    public List<EmployeeJoined> getEmployeesByPage(int pageid, int total){
+        String sql = "SELECT p.*, s.*, a.* FROM PRACOWNICY p\n" +
+                "INNER JOIN STANOWISKA s\n" +
+                "ON p.ID_STANOWISKA = s.ID_STANOWISKA\n" +
+                "INNER JOIN ADRESY a\n" +
+                "ON p.ID_ADRESU = a.ID_ADRESU"+
+                " ORDER BY p.ID_PRACOWNIKA OFFSET "+(pageid-1)+" ROWS FETCH NEXT "+total+" ROWS ONLY";
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(EmployeeJoined.class));
+    }
 
     public void save(EmployeeJoined pos) {
         SimpleJdbcInsert insertActor2 = new SimpleJdbcInsert(jdbcTemplate);

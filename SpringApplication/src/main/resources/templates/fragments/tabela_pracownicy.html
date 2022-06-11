@@ -13,34 +13,26 @@
         <td>Imie</td>
         <td>Drugie Imie</td>
         <td>Nazwisko</td>
-        <td>PESEL</td>
         <td>Plec</td>
-        <td>Data Zatrudnienia</td>
         <td>Numer Telefonu</td>
-        <td>ID Adresu</td>
-        <td>ID Stanowiska</td>
         <td>Akcja</td>
 
     </tr>
     </thead>
-    <tbody>
+    <tbody class="table-hover">
     <tr th:each="employee : ${listEmployee}">
         <td th:text="${employee.ID_PRACOWNIKA}">ID</td>
         <td th:text="${employee.IMIE}">Imie</td>
         <td th:text="${employee.DRUGIE_IMIE}">Drugie Imie</td>
         <td th:text="${employee.NAZWISKO}">Nazwisko</td>
-        <td th:text="${employee.PESEL}">PESEL</td>
         <td th:text="${employee.PLEC}">Plec</td>
-        <td th:text="${employee.DATA_ZATRUDNIENIA}">Data Zatrudnienia</td>
         <td th:text="${employee.NUMER_TELEFONU}">Numer Telefonu</td>
-        <td th:text="${employee.ID_ADRESU}">ID Adresu</td>
-        <td th:text="${employee.ID_STANOWISKA}">ID Stanowiska</td>
         <td>
-            <a th:href="@{'/editEmployee/' + ${employee.ID_PRACOWNIKA}}">Edytuj</a>
-            <a th:href="@{'/deleteEmployee/' + ${employee.ID_PRACOWNIKA}}">Usun</a>
+            <a th:href="@{'/editEmployee/' + ${employee.ID_PRACOWNIKA}}" class="badge badge-dark">Edytuj</a>
+            <a th:href="@{'/deleteEmployee/' + ${employee.ID_PRACOWNIKA}}" class="badge badge-dark">Usun</a>
+            <a th:href="@{'/pracownik/'}" class="badge badge-warning">Zobacz Wiecej</a>
         </td>
     </tr>
-
     </tbody>
 </table>
 </body>
