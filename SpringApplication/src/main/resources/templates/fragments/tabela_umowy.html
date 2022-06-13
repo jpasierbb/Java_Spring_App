@@ -29,7 +29,7 @@
         <td th:text="${contract.ID_KLIENTA}">Numer Telefonu</td>
         <td>
             <a th:href="@{'/editContract/' + ${contract.ID_UMOWY}}" class="badge badge-dark">Edytuj</a>
-            <a th:href="@{/deleteEmployee/(id=${contract.ID_UMOWY})}" class="badge badge-dark" onclick="return confirmDelete()">Usuń</a>
+            <a th:href="@{/deleteContract/(id=${contract.ID_UMOWY})}" class="badge badge-dark" onclick="return confirmDelete()">Usuń</a>
             <a th:href="@{'/umowa/' + ${contract.ID_UMOWY}}" class="badge badge-warning">Zobacz Wiecej</a>
         </td>
     </tr>
