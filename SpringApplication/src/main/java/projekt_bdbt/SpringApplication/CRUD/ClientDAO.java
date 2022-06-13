@@ -34,7 +34,7 @@ public class ClientDAO {
         return listClient;
     }
 
-    public void save(Client pos) {
+    public void save(Client pos, Contract cont) {
         String sql = "SELECT Max(ID_KLIENTA) FROM KLIENCI";
         int maxID = jdbcTemplate.queryForObject(sql, int.class);
 
@@ -48,6 +48,12 @@ public class ClientDAO {
         insertActor2.withTableName("OSOBA_PRYWATNA").usingColumns("ID_KLIENTA","IMIE","NAZWISKO", "PESEL");
         BeanPropertySqlParameterSource param2 = new BeanPropertySqlParameterSource(pos);
         insertActor2.execute(param2);
+
+        cont.setID_KLIENTA(pos.ID_KLIENTA);
+        SimpleJdbcInsert insertActor3 = new SimpleJdbcInsert(jdbcTemplate);
+        insertActor3.withTableName("UMOWY").usingColumns("ID_USLUGI","DATA_ZAWARCIA","DATA_ZAKONCZENIA","ID_KLIENTA");
+        BeanPropertySqlParameterSource param3 = new BeanPropertySqlParameterSource(cont);
+        insertActor3.execute(param3);
 
     }
 
