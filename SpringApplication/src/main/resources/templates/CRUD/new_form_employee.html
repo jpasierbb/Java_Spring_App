@@ -42,7 +42,16 @@
           </tr>
           <tr>
             <th scope="row">Płeć</th>
-            <td> <input class="form-control" th:type="text" th:field="*{PLEC}"/></td>
+            <td>
+            <select class = "custom-select" th:field="*{PLEC}">
+              <option th:value="M" th:text="Mężczyzna"></option>
+              <option th:value="K" th:text="Kobieta"></option>
+            </select>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Numer Telefonu</th>
+            <td> <input class="form-control" th:type="text" th:field="*{NUMER_TELEFONU}"/></td>
           </tr>
           </tbody>
         </table>
