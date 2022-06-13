@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>tabela_umowy</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<nav th:fragment="tabela_nav">
+    <ul class="pagination">
+        <li th:if="${pageid > 1}" class="page-item active">
+            <a class="page-link text-dark" th:href="@{/umowy/{page}(page = ${pageid} -1)}" aria-label="Previous">Poprzednia strona
+            </a>
+        </li>
+        <li th:if="${pageid == 1}" class="page-item disabled">
+            <a class="page-link text-dark" href="#" aria-label="Previous">
+                Poprzednia strona
+            </a>
+        </li>
+        <li th:if="${pageid > 1}" th:each="i : ${#numbers.sequence(1,pageid - 1)}" class="page-item">
+            <a class="page-link text-dark" th:href="@{/umowy/{page}(page=${i})}" th:text="${i}">
+            </a>
+        </li>
+        <li class="page-item active">
+            <a class="page-link text-dark" th:href="@{/umowy/{page}(page=${pageid})}" th:text="${pageid}">
+            </a>
+        </li>
+        <li th:if="${pageid < maxPage}" th:each="i : ${#numbers.sequence(pageid + 1,maxPage)}" class="page-item">
+            <a class="page-link text-dark" th:href="@{/umowy/{page}(page=${i})}" th:text="${i}">
+            </a>
+        </li>
+        <li class="page-item active btn-warning" th:if="${pageid < maxPage}">
+            <a class="page-link text-dark" th:href="@{/umowy/{page}(page = ${pageid}+1)}" aria-label="Next">Następna strona
+            </a>
+        </li>
+        <li th:if="${pageid == maxPage}" class="page-item disabled">
+            <a class="page-link text-dark" href="#" aria-label="Next">Następna strona
+            </a>
+        </li>
+    </ul>
+</nav>
+</body>
+</html>

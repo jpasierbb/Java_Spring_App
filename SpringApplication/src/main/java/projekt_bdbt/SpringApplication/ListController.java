@@ -24,6 +24,8 @@ public class ListController {
     private AddressDAO addressdao;
     @Autowired
     private PositionDAO positiondao;
+    @Autowired
+    private ContractDAO contractDAO;
 
     @GetMapping("/pracownicy/{pageid}")
     public String getEmployees(Model model, @PathVariable int pageid){
@@ -57,6 +59,24 @@ public class ListController {
         catch (EmptyResultDataAccessException err){
             return "errors/404";
         }
+    }
+
+    @GetMapping("/umowy/{id}")
+    public String getContracts(Model model, @PathVariable(value = "id") int pageid){
+        int total = 20;
+        int maxPage = (int) (Math.ceil((contractDAO.getSize()/total))+1);
+        if(pageid>0 && pageid<=maxPage){
+            model.addAttribute("pageid",pageid);
+            if(pageid==1){}
+            else {
+                pageid=(pageid-1)*total+1;
+            }
+            List<Contract> list = contractDAO.getContractsByPage(pageid,total);
+            model.addAttribute("listContracts",list);
+            model.addAttribute("maxPage",maxPage);
+            return "pracownik/umowy";
+        }
+        else return "errors/404";
     }
 
 }

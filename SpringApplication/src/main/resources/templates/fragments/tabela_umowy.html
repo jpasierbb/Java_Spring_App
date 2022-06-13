@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>tabela_pracownicy</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
+<table class="table table-fixed" th:fragment="tabela">
+    <thead class="table-dark">
+    <tr>
+        <td>ID</td>
+        <td>ID usługi</td>
+        <td>Typ usługi</td>
+        <td>Data zawarcia</td>
+        <td>Data zakonczenia</td>
+        <td>ID klienta</td>
+        <td>Akcja</td>
 
+    </tr>
+    </thead>
+    <tbody class="table-hover">
+    <tr th:each="contract : ${listContracts}">
+        <td th:text="${contract.ID_UMOWY}"></td>
+        <td th:text="${contract.ID_USLUGI}"></td>
+        <td th:text="${contract.TYP_USLUGI}"></td>
+        <td th:text="${contract.DATA_ZAWARCIA}"></td>
+        <td th:text="${contract.DATA_ZAKONCZENIA}"></td>
+        <td th:text="${contract.ID_KLIENTA}">Numer Telefonu</td>
+        <td>
+            <a th:href="@{'/editContract/' + ${contract.ID_UMOWY}}" class="badge badge-dark">Edytuj</a>
+            <a th:href="@{/deleteEmployee/(id=${contract.ID_UMOWY})}" class="badge badge-dark" onclick="return confirmDelete()">Usuń</a>
+            <a th:href="@{'/umowa/' + ${contract.ID_UMOWY}}" class="badge badge-warning">Zobacz Wiecej</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

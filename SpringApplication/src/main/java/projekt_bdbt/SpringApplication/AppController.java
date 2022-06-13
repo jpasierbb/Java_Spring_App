@@ -32,17 +32,7 @@ public class AppController implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/").setViewName("index");
-        registry.addViewController("/main").setViewName("main");
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/main_admin").setViewName("admin/main_admin");
-        registry.addViewController("/main_user").setViewName("user/main_user");
-        registry.addViewController("/main_operator").setViewName("operator/main_operator");
-        registry.addViewController("/main_klient").setViewName("klient/main_klient");
-        registry.addViewController("/main_konsultant").setViewName("konsultant/main_konsultant");
-        registry.addViewController("/main_pracownik").setViewName("pracownik/main_pracownik");
-        registry.addViewController("/main_sprzedawca").setViewName("sprzedawca/main_sprzedawca");
-        registry.addViewController("/pracownicy/**").setViewName("operator/pracownicy");
-        registry.addViewController("/pracownik/**").setViewName("operator/pracownik");
     }
 
     @Controller

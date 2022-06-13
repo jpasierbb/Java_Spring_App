@@ -32,6 +32,18 @@ public class ContractDAO {
         return listContract;
     }
 
+    public List<Contract> getContractsByPage(int pageid, int total){
+        String sql = "SELECT k.ID_UMOWY, k.ID_USLUGI, o.TYP_USLUGI, k.DATA_ZAWARCIA, k.DATA_ZAKONCZENIA, k.ID_KLIENTA FROM UMOWY k\n" +
+                "INNER JOIN USLUGI o\n" +
+                "ON k.ID_USLUGI=o.ID_USLUGI\n" +
+                "ORDER BY ID_UMOWY OFFSET\n" +
+                (pageid-1)+" ROWS FETCH NEXT "+total+" ROWS ONLY";
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Contract.class));
+    }
+    public int getSize(){
+        String sql = "SELECT COUNT(*) FROM UMOWY";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
     public void save(Contract contract) {
         String sql = "SELECT Max(ID_KLIENTA) FROM KLIENCI";
         int maxID = jdbcTemplate.queryForObject(sql, int.class);
