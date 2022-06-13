@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>klient_view</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div class="container" th:fragment="klient">
+  <div class="text-left">
+    <img width="150px" th:src="@{/images/contract.png}" />
+  </div>
+  <label class="text-center" style="font-size:30px" th:text="${'Klient ' + client.IMIE + ' ' + client.NAZWISKO}"></label>
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table" style="table-layout: fixed">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Dane Osobowe</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">ID</th>
+          <td th:text="${client.ID_Klienta}"></td>
+        </tr>
+        <tr>
+          <th scope="row">Imię</th>
+          <td th:text="${client.IMIE}"></td>
+        </tr>
+        <tr>
+          <th scope="row">Nazwisko</th>
+          <td th:text="${client.NAZWISKO}"></td>
+        </tr>
+        <tr>
+          <th scope="row">PESEL</th>
+          <td th:text="${client.PESEL}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table" style="table-layout: fixed">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Adres</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">Ulica</th>
+          <td th:text="${client.ULICA}"></td>
+        </tr>
+        <tr>
+          <th scope="row">Miejscowość</th>
+          <td th:text="${client.MIEJSCOWOSC}"></td>
+        </tr>
+        <tr>
+          <th scope="row">Numer budynku</th>
+          <td th:text="${client.NUMER_BUDYNKU}"></td>
+        </tr>
+        <tr>
+          <th scope="row">Numer lokalu</th>
+          <td th:text="${client.NUMER_LOKALU}"></td>
+        </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 text-right">
+      <div class="btn-group" role="group">
+        <a class="btn btn-dark" th:href="@{'/editClient/' + ${client.ID_KLIENTA}}">Edytuj Klienta</a>
+        <a class="btn btn-dark" onclick="return confirmDelete()" th:href="@{/deleteClient/(id=${client.ID_KLIENTA})}">Usuń Klienta</a>
+      </div>
+      <a class="btn btn-warning" th:href="@{/klienci/1}">Wróć</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
