@@ -17,9 +17,9 @@ class ClientDAOTest extends Object {
     @BeforeEach
     void setUp() {
         DriverManagerDataSource datasource = new DriverManagerDataSource();
-        datasource.setUrl("jdbc:oracle:thin:@127.0.0.1:1521:bdbt");
-        datasource.setUsername("ANDRZEJ");
-        datasource.setPassword("bdbt");
+        datasource.setUrl("jdbc:oracle:thin:@127.0.0.1:1521:orcl");
+        datasource.setUsername("OPERATOR");
+        datasource.setPassword("operator");
         datasource.setDriverClassName("oracle.jdbc.OracleDriver");
 
         dao = new ClientDAO(new JdbcTemplate(datasource));
@@ -38,8 +38,9 @@ class ClientDAOTest extends Object {
 
     @Test
     void save() {
-        Client client = new Client(0,"Jan", "Januszek", "09876543212", "098765432",1);
-        dao.save(client);
+        Contract cont = new Contract(0,1, "22-01-01", "22-01-01", 0);
+        Client client = new Client(0,"Jan", "Januszek", "09876543212", "098765432",21);
+        dao.save(client, cont);
     }
 
     @Test
