@@ -71,10 +71,7 @@ public class ContractDAO {
     }
 
     public void update(Contract contract) {
-        java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
-        java.sql.Date sqlDate2 = new java.sql.Date(System.currentTimeMillis());
-        contract.DATA_ZAWARCIA = sqlDate.toString();
-        contract.DATA_ZAKONCZENIA = sqlDate2.toString();
+
 
         String sql = "UPDATE UMOWY SET ID_USLUGI=:ID_USLUGI, DATA_ZAWARCIA=:DATA_ZAWARCIA, DATA_ZAKONCZENIA=:DATA_ZAKONCZENIA, ID_KLIENTA=:ID_KLIENTA WHERE ID_UMOWY=:ID_UMOWY";
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(contract);

@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>tabela_klienci</title>
+    <title>Tabela Klienci</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
+<table class="table table-fixed" th:fragment="tabela">
+    <thead class="table-dark">
+    <tr>
+        <td>ID</td>
+        <td>Imię</td>
+        <td>Nazwisko</td>
+        <td>PESEL</td>
+        <td>Numer Telefonu</td>
+        <td>Akcja</td>
 
-<table class="table table-striped">
-    <thead>
-    <tr class="bg-warning">
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
     </tr>
     </thead>
-    <tbody>
-    <tr th:each="client : ${listClient}">
-        <td>${client.}</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+    <tbody class="table-hover">
+    <tr th:each="client : ${listClientJoined}">
+        <td th:text="${client.ID_KLIENTA}">ID</td>
+        <td th:text="${client.IMIE}">Imie</td>
+        <td th:text="${client.NAZWISKO}">Drugie Imie</td>
+        <td th:text="${client.PESEL}">Nazwisko</td>
+        <td th:text="${client.NUMER_TELEFONU}">Numer Telefonu</td>
+        <td>
+            <a th:href="@{'/editClient/' + ${client.ID_KLIENTA}}" class="badge badge-dark">Edytuj</a>
+            <a th:href="@{/deleteClient/(id=${client.ID_KLIENTA})}" class="badge badge-dark" onclick="return confirmDelete()">Usuń</a>
+            <a th:href="@{'/klient/' + ${client.ID_KLIENTA}}" class="badge badge-warning">Zobacz Wiecej</a>
+        </td>
     </tr>
-
     </tbody>
 </table>
 </body>

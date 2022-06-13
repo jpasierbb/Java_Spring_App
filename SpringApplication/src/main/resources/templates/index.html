@@ -5,135 +5,44 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Welcome Page</title>
-
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{css/main.css} "/>
 
 </head>
 <body>
-
-<!-- Navigation -->
 <div th:insert="fragments/header :: header"></div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 mt-5">
 
-            <div class="form-group">
-                <label>Welcome to the home page!</label>
-                <div>If you want to login, click  <a th:href="@{/main}"><b>here</b></a> or in the upper right corner.</div>
-            </div>
+<!-- Slideshow container -->
+<div class="slideshow-container">
 
-        </div>
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides fade">
+        <img th:src="@{images/gothic.jpg}" style="width:100%">
     </div>
+
+    <div class="mySlides fade">
+        <img th:src="@{images/2.png}" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+        <img th:src="@{images/3.png}" style="width:100%">
+    </div>
+
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
 </div>
 
-
-<!-- TABELA PRACOWNIKOW -->
-<div align="center">
-    <h1>Pracownicy</h1>
-    <a href="/newEmployee">Dodaj nowego pracownika</a>
-    <br/><br/>
-    <table border="1" cellpadding="10">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Imie</th>
-            <th>Drugie Imie</th>
-            <th>Nazwisko</th>
-            <th>PESEL</th>
-            <th>Plec</th>
-            <th>Data Zatrudnienia</th>
-            <th>Numer Telefonu</th>
-            <th>ID Adresu</th>
-            <th>ID Stanowiska</th>
-            <th>Akcja</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="employee : ${listEmployee}">
-            <td th:text="${employee.ID_PRACOWNIKA}">ID</td>
-            <td th:text="${employee.IMIE}">Imie</td>
-            <td th:text="${employee.DRUGIE_IMIE}">Drugie Imie</td>
-            <td th:text="${employee.NAZWISKO}">Nazwisko</td>
-            <td th:text="${employee.PESEL}">PESEL</td>
-            <td th:text="${employee.PLEC}">Plec</td>
-            <td th:text="${employee.DATA_ZATRUDNIENIA}">Data Zatrudnienia</td>
-            <td th:text="${employee.NUMER_TELEFONU}">Numer Telefonu</td>
-            <td th:text="${employee.ID_ADRESU}">ID Adresu</td>
-            <td th:text="${employee.ID_STANOWISKA}">ID Stanowiska</td>
-            <td>
-                <a th:href="@{'/editEmployee/' + ${employee.ID_PRACOWNIKA}}">Edytuj</a>
-                <a th:href="@{'/deleteEmployee/' + ${employee.ID_PRACOWNIKA}}">Usun</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<!-- TABELA ADRESOW -->
-<div align="center">
-    <h1>Adresy</h1>
-    <a href="/newAddress">Dodaj nowy Adres</a>
-    <br/><br/>
-    <table border="1" cellpadding="10">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Miejscowosc</th>
-            <th>Ulica</th>
-            <th>Numer Budynku</th>
-            <th>Numer Lokalu</th>
-            <th>Akcja</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="address : ${listAddress}">
-            <td th:text="${address.ID_ADRESU}">ID</td>
-            <td th:text="${address.MIEJSCOWOSC}">Miejscowosc</td>
-            <td th:text="${address.ULICA}">Ulica</td>
-            <td th:text="${address.NUMER_BUDYNKU}">Numer Budynku</td>
-            <td th:text="${address.NUMER_LOKALU}">Numer Lokalu</td>
-            <td>
-                <a th:href="@{'/editAddress/' + ${address.ID_ADRESU}}">Edytuj</a>
-                <a th:href="@{'/deleteAddress/' + ${address.ID_ADRESU}}">Usun</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<!-- TABELA STANOWISK -->
-<div align="center">
-    <h1>Stanowiska</h1>
-    <a href="/newPosition">Dodaj nowe stanowisko</a>
-    <br/><br/>
-    <table border="1" cellpadding="10">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nazwa</th>
-            <th>Opis</th>
-            <th>Akcja</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="position : ${listPosition}">
-            <td th:text="${position.ID_STANOWISKA}">ID</td>
-            <td th:text="${position.NAZWA}">Nazwa</td>
-            <td th:text="${position.OPIS}">Opis</td>
-            <td>
-                <a th:href="@{'/editPosition/' + ${position.ID_STANOWISKA}}">Edytuj</a>
-                <a th:href="@{'/deletePosition/' + ${position.ID_STANOWISKA}}">Usun</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
+<script th:src="@{js/main.js}"></script>
 </body>
 </html>
 
