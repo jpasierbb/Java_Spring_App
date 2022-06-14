@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj klienta</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="container">
+    <div class="text-left">
+        <img width="150px" th:src="@{/images/clients.png}" />
+
+    </div>
+    <label class="text-center" style="font-size:30px" th:text="${'Klient ' + client.IMIE + ' ' + client.NAZWISKO}"></label>
+    <form action="#" th:action="@{/updateClient}" th:object="${client}" method="post">
+
+        <!--
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table" style="table-layout: fixed">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Umowa</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Typ Usługi</th>
+                        <td>
+                            <select id="nazw_stan" class="custom-select" th:field="*{ID_USLUGI}">
+                                <option th:each="position : ${positionsList}" th:value="${position.ID_STANOWISKA} " th:text="${position.NAZWA + ' (ID: ' + position.ID_STANOWISKA + ')'}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Data Zawarcia</th>
+                        <td>
+                            <input class="form-control" th:type="date" th:field="*{DATA_ZAWARCIA}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Data Zakonczenia</th>
+                        <td>
+                            <input class="form-control" th:type="date" th:field="*{DATA_ZAKONCZENIA }"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table" style="table-layout: fixed">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Dane Osobowe</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <tr>
+                        <th scope="row">ID</th>
+                        <td><input class="form-control" type="text" th:field="*{ID_KLIENTA}" readonly="readonly" /></td>
+                    </tr>
+                        <th scope="row">Imię</th>
+                        <td><input class="form-control" th:type="text" type="text" th:field="*{IMIE}" /></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nazwisko</th>
+                        <td> <input class="form-control" th:type="text" th:field="*{NAZWISKO}"/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">PESEL</th>
+                        <td> <input class="form-control" th:type="text" th:field="*{PESEL}"/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Numer Telefonu</th>
+                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_TELEFONU}"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table" style="table-layout: fixed">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Adres</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <tr>
+                        <th scope="row">ID</th>
+                        <td><input class="form-control" type="text" th:field="*{ID_ADRESU}" readonly="readonly" /></td>
+                    </tr>
+                        <th scope="row">Ulica</th>
+                        <td> <input class="form-control" th:type="text" th:field="*{ULICA}"/> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Miejscowość</th>
+                        <td> <input class="form-control" th:type="text" th:field="*{MIEJSCOWOSC}"/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Numer budynku</th>
+                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_BUDYNKU}"/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Numer lokalu</th>
+                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_LOKALU}"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-success" type="submit">Zapisz</button>
+                <button class="btn btn-danger" type="reset">Wyczyść zmiany</button>
+                <a class="btn btn-warning" th:href="@{/klienci}">Wróć</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>
