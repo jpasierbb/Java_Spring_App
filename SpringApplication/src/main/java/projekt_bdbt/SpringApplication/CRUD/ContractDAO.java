@@ -61,13 +61,25 @@ public class ContractDAO {
     }
 
     public Contract get(int id) {
-        Object[] args = {id};
+        //Object[] args = {id};
         String sql = "SELECT k.ID_UMOWY, k.ID_USLUGI, o.TYP_USLUGI, k.DATA_ZAWARCIA, k.DATA_ZAKONCZENIA, k.ID_KLIENTA FROM UMOWY k\n" +
                 "INNER JOIN USLUGI o\n" +
-                "ON k.ID_USLUGI=o.ID_USLUGI WHERE k.ID_UMOWY = ?";
-        Contract contract = jdbcTemplate.queryForObject(sql, args,
+                "ON k.ID_USLUGI=o.ID_USLUGI WHERE k.ID_UMOWY = " + id;
+        Contract contract = jdbcTemplate.queryForObject(sql,
                 BeanPropertyRowMapper.newInstance(Contract.class));
         return contract;
+    }
+
+    public List<Contract> getContracts(int id){
+        Object[] args = {id};
+        String sql = "SELECT u.ID_UMOWY,s.TYP_USLUGI, u.DATA_ZAWARCIA, u.DATA_ZAKONCZENIA FROM KLIENCI k\n" +
+                "INNER JOIN UMOWY u\n" +
+                "ON k.ID_KLIENTA=u.ID_KLIENTA\n" +
+                "INNER JOIN USLUGI s\n" +
+                "ON s.ID_USLUGI=u.ID_USLUGI\n" +
+                "WHERE k.ID_KLIENTA = " + id;
+
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Contract.class));
     }
 
     public void update(Contract contract) {
