@@ -84,6 +84,19 @@ public class ListController {
     public String getContracts(){
         return "redirect:/umowy/1";
     }
+    @GetMapping("/umowa/{id}")
+    public String getContract(Model model, @PathVariable(value = "id") int id){
+        try {
+            Contract contract = contractDAO.get(id);
+            ClientJoined clientJoined = clientJoinedDAO.get(contract.getID_KLIENTA());
+            model.addAttribute("contract",contract);
+            model.addAttribute("client",clientJoined);
+            return "pracownik/umowa";
+        }
+        catch (EmptyResultDataAccessException err){
+            return "errors/404";
+        }
+    }
 
     @GetMapping("/klienci/{id}")
     public String getClients(Model model, @PathVariable(value = "id") int pageid){

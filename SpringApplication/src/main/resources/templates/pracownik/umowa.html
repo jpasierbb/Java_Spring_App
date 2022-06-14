@@ -1,93 +1,23 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Dodaj nową umowę</title>
-  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <meta charset="UTF-8"/>
+    <title>Pracownicy</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link  th:href="@{/css/stylesheet.css}" th:rel="stylesheet"/>
 </head>
-
 <body>
+
+
 <div th:insert="fragments/header :: header"></div>
-<div class="container">
-  <div class="text-left">
-    <img width="150px" th:src="@{/images/contract.png}" />
-  </div>
-  <label class="text-center" style="font-size:30px">Nowa Umowa</label>
-  <form action="#" th:action="@{/saveContract}" th:object="${contract}" method="post">
+<div th:insert="/fragments/umowa_view :: umowa"></div>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <table class="table" style="table-layout: fixed">
-          <thead class="thead-dark">
-          <tr>
-            <th scope="col">Dane umowy</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <th scope="row">Typ usługi</th>
-            <td>
-              <select id="nazw_stan" class="custom-select" th:field="*{ID_USLUGI}">
-                <option th:value="4" th:type="text" th:text="Internet"></option>
-                <option th:value="5" th:type="text" th:text="Telefonia"></option>
-                <option th:value="12" th:type="text" th:text="SMS"></option>
-                <option th:value="13" th:type="text" th:text="MMS"></option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Data zawarcia umowy</th>
-            <td> <input class="form-control" th:type="date" th:field="*{DATA_ZAWARCIA}"/></td>
-          </tr>
-          <tr>
-            <th scope="row">Data zakończenia umowy</th>
-            <td> <input class="form-control" th:type="date" th:field="*{DATA_ZAKONCZENIA}"/></td>
-          </tr>
-          <tr>
-            <th scope="row">ID Klienta</th>
-            <td> <input th:readonly="${true}" th:placeholder="${client.ID_KLIENTA}" class="form-control" th:type="text" th:field="*{ID_KLIENTA}"/></td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <table class="table" style="table-layout: fixed">
-          <thead class="thead-dark">
-          <tr>
-            <th scope="col">Klient</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <th scope="row">ID</th>
-            <td th:text="${client.ID_KLIENTA}"></td>
-            <th scope="row">Imie</th>
-            <td th:text="${client.IMIE}"></td>
-            <th scope="row">Nazwisko</th>
-            <td th:text="${client.Nazwisko}"></td>
-            <th scope="row">Pesel</th>
-            <td th:text="${client.PESEL}"></td>
-            <th scope="row">Numer telefonu</th>
-            <td th:text="${client.NR_TELEFONU}"></td>
-            <th scope="row">ID Adresu</th>
-            <td th:text="${client.ID_ADRESU}"></td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12 text-right">
-        <button class="btn btn-success" type="submit">Zapisz</button>
-        <button class="btn btn-danger" type="reset">Wyczyść zmiany</button>
-      </div>
-    </div>
-  </form>
-
-</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
 
 </body>
 </html>
