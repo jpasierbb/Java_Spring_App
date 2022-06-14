@@ -1,5 +1,6 @@
 package projekt_bdbt.SpringApplication.CRUD;
 
+import oracle.jdbc.OracleDatabaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -44,7 +45,7 @@ public class ContractDAO {
         String sql = "SELECT COUNT(*) FROM UMOWY";
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
-    public void save(Contract contract) {
+    public void save(Contract contract) throws OracleDatabaseException {
 
         SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
         insertActor.withTableName("UMOWY").usingColumns("ID_USLUGI","DATA_ZAWARCIA","DATA_ZAKONCZENIA","ID_KLIENTA");
@@ -74,7 +75,7 @@ public class ContractDAO {
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Contract.class));
     }
 
-    public void update(Contract contract) {
+    public void update(Contract contract) throws OracleDatabaseException{
 
 
         String sql = "UPDATE UMOWY SET ID_USLUGI=:ID_USLUGI, DATA_ZAWARCIA=:DATA_ZAWARCIA, DATA_ZAKONCZENIA=:DATA_ZAKONCZENIA, ID_KLIENTA=:ID_KLIENTA WHERE ID_UMOWY=:ID_UMOWY";

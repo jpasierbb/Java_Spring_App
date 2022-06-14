@@ -1,12 +1,15 @@
 package projekt_bdbt.SpringApplication;
 
+import oracle.jdbc.OracleDatabaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import projekt_bdbt.SpringApplication.CRUD.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -25,9 +28,18 @@ public class ContractController {
         return "CRUD/new_form_contract";
     }
     @PostMapping("/saveContract")
-    public String saveContract(@ModelAttribute("contract") Contract contract) {
-        contractDAO.save(contract);
-        return "redirect:/umowy/1";
+    public String saveContract(@Valid @ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
+        try {
+            if(bindingResult.hasErrors()){
+                return "CRUD/new_form_contract";
+            }
+            contractDAO.save(contract);
+            return "redirect:/umowy/1";
+        }
+        catch (OracleDatabaseException err){
+            return "redirect:/error/dataError";
+        }
+
     }
 
     @GetMapping("/editContract/{ID_UMOWY}")
@@ -40,9 +52,18 @@ public class ContractController {
         return mav;
     }
     @PostMapping("/updateContract")
-    public String updateContract(@ModelAttribute("contract") Contract contract) {
-        contractDAO.update(contract);
-        return "redirect:/umowy/1";
+    public String updateContract(@Valid @ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
+        try {
+            if(bindingResult.hasErrors()){
+                return "CRUD/edit_form_contract";
+            }
+            contractDAO.update(contract);
+            return "redirect:/umowy/1";
+        }
+        catch (OracleDatabaseException err){
+            return "redirect:/error/dataError";
+        }
+
     }
     //usun
     @RequestMapping("/deleteContract")

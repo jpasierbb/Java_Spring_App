@@ -3,6 +3,7 @@ package projekt_bdbt.SpringApplication.CRUD;
 import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
@@ -23,7 +24,7 @@ public class EmployeeJoined {
     @Size(min = 11,max = 11)
     public String PESEL;
     public String PLEC;
-    @NotBlank
+    @NotNull
     public String DATA_ZATRUDNIENIA;
     @Positive
     public String NUMER_TELEFONU;

@@ -1,11 +1,17 @@
 package projekt_bdbt.SpringApplication.CRUD;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class Contract {
 
     int ID_UMOWY;
     int ID_USLUGI;
     String TYP_USLUGI;
+    @NotNull
     String DATA_ZAWARCIA;
+    @NotBlank
+    @NotNull
     String DATA_ZAKONCZENIA;
     int ID_KLIENTA;
 
