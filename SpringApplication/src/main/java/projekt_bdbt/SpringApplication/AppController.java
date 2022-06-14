@@ -89,45 +89,7 @@ public class AppController implements WebMvcConfigurer {
             return "redirect:/";
         }
 
-        //TABELA PRACOWNIKOW
-        //zapisywanie
-        @RequestMapping(value = {"/newEmployee"})
-        public String showNewFormEmployee(Model model) {
-            EmployeeJoined employee = new EmployeeJoined();
-            List<Position> positions = positiondao.list();
-            model.addAttribute("employee", employee);
-            model.addAttribute("positionsList",positions);
-            return "CRUD/new_form_employee";
-        }
-        @RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
-        public String saveEmployee(@ModelAttribute("employee") EmployeeJoined employee) {
-            employeeJoinedDAO.save(employee);
-            return "redirect:/pracownicy/1";
-        }
 
-        //edycja i update
-        @RequestMapping("/editEmployee/{ID_PRACOWNIKA}")
-        public ModelAndView showEditFormEmployee(@PathVariable(name = "ID_PRACOWNIKA") int id) {
-            ModelAndView mav = new ModelAndView("CRUD/edit_form_employee");
-            Employee employee = employeedao.get(id);
-            mav.addObject("employee", employee);
-            return mav;
-        }
-        @RequestMapping(value = "/updateEmployee", method = RequestMethod.POST)
-        public String updateEmployee(@ModelAttribute("employee") Employee employee) {
-            employeedao.update(employee);
-            return "redirect:/";
-        }
-        //usun
-        @RequestMapping("/deleteEmployee")
-        public String deleteEmployee(@RequestParam int id) {
-            employeedao.delete(id);
-            return "redirect:/pracownicy";
-        }
-
-
-        //TABELA ADRESY
-        //zapisywanie
         @RequestMapping(value = {"/newAddress"})
         public String showNewFormAddress(Model model) {
             Address address = new Address();
@@ -191,42 +153,6 @@ public class AppController implements WebMvcConfigurer {
             positiondao.delete(id);
             return "redirect:/";
         }
-
-        //TABELA KLIENCI
-        //zapisywanie
-        @RequestMapping(value = {"/newClient"})
-        public String showNewFormClient(Model model) {
-            Client client = new Client();
-            model.addAttribute("client", client);
-            return "CRUD/new_form_client";
-        }
-        @RequestMapping(value = "/saveClient", method = RequestMethod.POST)
-        public String saveClient(@ModelAttribute("client") Client client) {
-            clientdao.save(client);
-            return "redirect:/";
-        }
-
-        //edycja i update
-        @RequestMapping("/editClient/{ID_Klienta}")
-        public ModelAndView showEditFormClient(@PathVariable(name = "ID_Klienta") int id) {
-            ModelAndView mav = new ModelAndView("CRUD/edit_form_client");
-            Client client = clientdao.get(id);
-            mav.addObject("client", client);
-            return mav;
-        }
-        @RequestMapping(value = "/updateClient", method = RequestMethod.POST)
-        public String updateClient(@ModelAttribute("client") Client client) {
-            clientdao.update(client);
-            return "redirect:/";
-        }
-        //usun
-        @RequestMapping("/deleteClient/{ID_Klienta}")
-        public String deleteClient(@PathVariable(name = "ID_Klienta") int id) {
-            clientdao.delete(id);
-            return "redirect:/";
-        }
-
-
 
         //perspektywy
         @RequestMapping(value = {"/main_admin"})
