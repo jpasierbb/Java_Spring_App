@@ -189,6 +189,11 @@ public class AppController implements WebMvcConfigurer {
         public String showSprzedawcaPage(Model model) {
             return "sprzedawca/main_sprzedawca";
         }
+        @GetMapping(value = "/return")
+        public String goBack(HttpServletRequest request){
+            final String referer = request.getHeader("referer");
+            return "redirect:"+referer;
+        }
     }
 
 }
