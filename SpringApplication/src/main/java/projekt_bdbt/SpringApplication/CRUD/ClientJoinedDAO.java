@@ -33,6 +33,18 @@ public class ClientJoinedDAO {
         List<ClientJoined> listClientJoined = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(ClientJoined.class));
         return listClientJoined;
     }
+    public List<ClientJoined> getClientsByPage(int pageid, int total){
+        String sql = "SELECT k.ID_KLIENTA, k.ID_Adresu, o.IMIE, o.NAZWISKO, o.PESEL, k.NUMER_TELEFONU, a.MIEJSCOWOSC, a.ULICA, a.NUMER_BUDYNKU, a.NUMER_LOKALU FROM KLIENCI k \n" +
+                "INNER JOIN OSOBA_PRYWATNA o \n" +
+                "ON k.ID_KLIENTA=o.ID_KLIENTA\n" +
+                "INNER JOIN ADRESY a\n" +
+                "on k.ID_Adresu = a.ID_Adresu" +" ORDER BY k.ID_KLIENTA " + "OFFSET "+(pageid-1)+" ROWS FETCH NEXT "+total+" ROWS ONLY";
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(ClientJoined.class));
+    }
+    public int getSize(){
+        String sql = "SELECT COUNT(*) FROM KLIENCI";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
 
     public void save(ClientJoined pos, Contract cont) {
         String sql = "SELECT Max(ID_KLIENTA) FROM KLIENCI";

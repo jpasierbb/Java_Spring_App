@@ -3,12 +3,12 @@ function successfullyLogout(){
 }
 
 function confirmDelete(){
-    if (confirm("Chcesz usunąć pracownika?")){
-        alert("Pracownik został usunięty");
+    if (confirm("Czy na pewno chcesz usunąć?")){
+        alert("Rekord został usunięty z bazy danych");
         return true;
     }
     else{
-        alert("Pracownik nie został usunięty");
+        alert("Nie usunięto rekordu z bazy danych");
         return false;
     }
 }

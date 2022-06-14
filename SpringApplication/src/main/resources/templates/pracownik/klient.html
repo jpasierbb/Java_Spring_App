@@ -11,22 +11,7 @@
 
 
 <div th:insert="fragments/header :: header"></div>
-<div class="container">
-    <div class="row">
-
-    </div>
-    <div class="text-left">
-        <img alt="employees logo" style="padding: 10px" src="#" width="200px" th:src="@{/images/contract.png}" />
-    </div>
-    <label style="font-size:30px" th:inline="text">UMOWY</label>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div th:insert="fragments/tabela_umowy :: tabela"></div>
-            <div th:insert="fragments/table_nav_umowy :: tabela_nav"></div>
-        </div>
-    </div>
-</div>
+<div th:insert="/fragments/klient_view :: klient"></div>
 
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

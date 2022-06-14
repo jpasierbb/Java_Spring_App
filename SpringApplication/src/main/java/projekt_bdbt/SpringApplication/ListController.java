@@ -26,6 +26,8 @@ public class ListController {
     private PositionDAO positiondao;
     @Autowired
     private ContractDAO contractDAO;
+    @Autowired
+    ClientJoinedDAO clientJoinedDAO;
 
     @GetMapping("/pracownicy/{pageid}")
     public String getEmployees(Model model, @PathVariable int pageid){
@@ -77,6 +79,44 @@ public class ListController {
             return "pracownik/umowy";
         }
         else return "errors/404";
+    }
+    @GetMapping("/umowy")
+    public String getContracts(){
+        return "redirect:/umowy/1";
+    }
+
+    @GetMapping("/klienci/{id}")
+    public String getClients(Model model, @PathVariable(value = "id") int pageid){
+       int total = 20;
+       int maxPage = (int) (Math.ceil((clientJoinedDAO.getSize()/total))+1);
+       if(pageid>0 && pageid<=maxPage){
+           model.addAttribute("pageid",pageid);
+           if(pageid==1){}
+           else {
+               pageid=(pageid-1)*total+1;
+           }
+           List<ClientJoined> list = clientJoinedDAO.getClientsByPage(pageid,total);
+           model.addAttribute("listClientJoined",list);
+           model.addAttribute("maxPage",maxPage);
+           return "pracownik/klienci";
+       }
+       else return "errors/404";
+   }
+   @GetMapping("/klienci")
+   public String getClients(){
+        return "redirect:/klienci/1";
+   }
+
+    @GetMapping("/klient/{id}")
+    public String getClient(Model model, @PathVariable(value = "id") int id){
+        try {
+            ClientJoined clientJoined = clientJoinedDAO.get(id);
+            model.addAttribute("client",clientJoined);
+            return "pracownik/klient";
+        }
+        catch (EmptyResultDataAccessException err){
+            return "errors/404";
+        }
     }
 
 }
