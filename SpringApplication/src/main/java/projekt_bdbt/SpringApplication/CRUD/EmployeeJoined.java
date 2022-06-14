@@ -1,20 +1,40 @@
 package projekt_bdbt.SpringApplication.CRUD;
 
-public class EmployeeJoined {
+import org.springframework.data.annotation.Id;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
+public class EmployeeJoined {
+    @Id
     public int ID_PRACOWNIKA;
+    @Id
     public int ID_STANOWISKA;
+    @Id
     public int ID_ADRESU;
+    @Size(min = 3,max = 20)
     public String IMIE;
+    @Size(max = 20)
     public String DRUGIE_IMIE;
+    @Size(min = 3,max = 20)
     public String NAZWISKO;
+    @Positive
+    @Size(min = 11,max = 11)
     public String PESEL;
     public String PLEC;
+    @NotBlank
     public String DATA_ZATRUDNIENIA;
+    @Positive
     public String NUMER_TELEFONU;
-
+    @NotBlank
+    @Size(min = 3,max = 40)
     String MIEJSCOWOSC;
+    @Size(min = 3,max = 40)
+    @NotBlank(message = "Pole nie może być puste")
     String ULICA;
+    @NotBlank(message = "Pole nie może być puste")
+    @Size(max = 5)
     String NUMER_BUDYNKU;
     String NUMER_LOKALU;
 

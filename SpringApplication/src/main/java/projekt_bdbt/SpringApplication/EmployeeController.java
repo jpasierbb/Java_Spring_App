@@ -3,10 +3,12 @@ package projekt_bdbt.SpringApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import projekt_bdbt.SpringApplication.CRUD.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -27,7 +29,10 @@ public class EmployeeController {
         return "CRUD/new_form_employee";
     }
     @RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
-    public String saveEmployee(@ModelAttribute("employee") EmployeeJoined employee) {
+    public String saveEmployee(@Valid @ModelAttribute("employee") EmployeeJoined employee, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "CRUD/new_form_employee";
+        }
         employeeJoinedDAO.save(employee);
         return "redirect:/pracownicy/1";
     }
@@ -43,7 +48,10 @@ public class EmployeeController {
         return mav;
     }
     @RequestMapping(value = "/updateEmployee", method = RequestMethod.POST)
-    public String updateEmployee(@ModelAttribute("employee") EmployeeJoined employee) {
+    public String updateEmployee(@Valid @ModelAttribute("employee") EmployeeJoined employee, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "CRUD/edit_form_employee";
+        }
         employeeJoinedDAO.update(employee);
         return "redirect:/pracownicy";
     }
