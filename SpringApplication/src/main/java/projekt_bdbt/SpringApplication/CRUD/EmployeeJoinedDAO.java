@@ -78,9 +78,7 @@ public class EmployeeJoinedDAO {
         BeanPropertySqlParameterSource param2 = new BeanPropertySqlParameterSource(emp);
         NamedParameterJdbcTemplate template2 = new NamedParameterJdbcTemplate(jdbcTemplate);
         template2.update(sql2, param2);
-
-        java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
-        emp.DATA_ZATRUDNIENIA = sqlDate.toString();
+        
         String sql = "UPDATE PRACOWNICY SET IMIE=:IMIE, DRUGIE_IMIE=:DRUGIE_IMIE, NAZWISKO=:NAZWISKO, PESEL=:PESEL, PLEC=:PLEC, DATA_ZATRUDNIENIA=:DATA_ZATRUDNIENIA, NUMER_TELEFONU=:NUMER_TELEFONU, ID_ADRESU=:ID_ADRESU, ID_STANOWISKA=:ID_STANOWISKA WHERE ID_PRACOWNIKA=:ID_PRACOWNIKA";
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(emp);
         NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);

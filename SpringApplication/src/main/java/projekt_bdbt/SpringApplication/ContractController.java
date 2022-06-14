@@ -32,20 +32,22 @@ public class ContractController {
 
     @GetMapping("/editContract/{ID_UMOWY}")
     public ModelAndView editContract(@PathVariable(name = "ID_UMOWY") int id) {
-        ModelAndView mav = new ModelAndView("CRUD/edit_form_employee");
+        ModelAndView mav = new ModelAndView("CRUD/edit_form_contract");
         Contract contract = contractDAO.get(id);
+        Client client = clientDAO.get(contract.getID_KLIENTA());
         mav.addObject("contract",contract);
+        mav.addObject("client",client);
         return mav;
     }
     @PostMapping("/updateContract")
     public String updateContract(@ModelAttribute("contract") Contract contract) {
         contractDAO.update(contract);
-        return "redirect:/";
+        return "redirect:/umowy/1";
     }
     //usun
     @RequestMapping("/deleteContract")
     public String deleteEmployee(@RequestParam int id) {
         contractDAO.delete(id);
-        return "redirect:/pracownicy";
+        return "redirect:/umowy";
     }
 }

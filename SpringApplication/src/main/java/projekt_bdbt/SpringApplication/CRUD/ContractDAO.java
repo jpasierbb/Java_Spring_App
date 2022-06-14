@@ -45,10 +45,6 @@ public class ContractDAO {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
     public void save(Contract contract) {
-        java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
-        java.sql.Date sqlDate2 = new java.sql.Date(System.currentTimeMillis());
-        contract.DATA_ZAWARCIA = sqlDate.toString();
-        contract.DATA_ZAKONCZENIA = sqlDate2.toString();
 
         SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
         insertActor.withTableName("UMOWY").usingColumns("ID_USLUGI","DATA_ZAWARCIA","DATA_ZAKONCZENIA","ID_KLIENTA");

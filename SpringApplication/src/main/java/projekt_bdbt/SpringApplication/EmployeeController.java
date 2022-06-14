@@ -36,19 +36,21 @@ public class EmployeeController {
     @RequestMapping("/editEmployee/{ID_PRACOWNIKA}")
     public ModelAndView showEditFormEmployee(@PathVariable(name = "ID_PRACOWNIKA") int id) {
         ModelAndView mav = new ModelAndView("CRUD/edit_form_employee");
-        Employee employee = employeedao.get(id);
+        EmployeeJoined employee = employeeJoinedDAO.get(id);
+        List<Position> positionsList = positiondao.list();
         mav.addObject("employee", employee);
+        mav.addObject("positionsList", positionsList);
         return mav;
     }
     @RequestMapping(value = "/updateEmployee", method = RequestMethod.POST)
-    public String updateEmployee(@ModelAttribute("employee") Employee employee) {
-        employeedao.update(employee);
-        return "redirect:/";
+    public String updateEmployee(@ModelAttribute("employee") EmployeeJoined employee) {
+        employeeJoinedDAO.update(employee);
+        return "redirect:/pracownicy";
     }
     //usun
     @RequestMapping("/deleteEmployee")
     public String deleteEmployee(@RequestParam int id) {
-        employeedao.delete(id);
+        employeeJoinedDAO.delete(id);
         return "redirect:/pracownicy";
     }
 }
