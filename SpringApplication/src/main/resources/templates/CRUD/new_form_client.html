@@ -14,43 +14,6 @@
     </div>
     <label class="text-center" style="font-size:30px">Dodaj klienta</label>
     <form action="#" th:action="@{/saveClient}" th:object="${client}" method="post">
-
-        <!--
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table" style="table-layout: fixed">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Umowa</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">Typ Usługi</th>
-                        <td>
-                            <select id="nazw_stan" class="custom-select" th:field="*{ID_USLUGI}">
-                                <option th:each="position : ${positionsList}" th:value="${position.ID_STANOWISKA} " th:text="${position.NAZWA + ' (ID: ' + position.ID_STANOWISKA + ')'}"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Data Zawarcia</th>
-                        <td>
-                            <input class="form-control" th:type="date" th:field="*{DATA_ZAWARCIA}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Data Zakonczenia</th>
-                        <td>
-                            <input class="form-control" th:type="date" th:field="*{DATA_ZAKONCZENIA }"/>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        -->
-
         <div class="row">
             <div class="col-sm-12">
                 <table class="table" style="table-layout: fixed">
