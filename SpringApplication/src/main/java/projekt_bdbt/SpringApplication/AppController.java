@@ -191,7 +191,7 @@ public class AppController implements WebMvcConfigurer {
         }
         @GetMapping(value = "/return")
         public String goBack(HttpServletRequest request){
-            final String referer = request.getHeader("referer");
+            String referer = request.getHeader("Referer");
             return "redirect:"+referer;
         }
     }

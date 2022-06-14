@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>klient_view</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div class="container" th:fragment="umowa">
+    <div class="text-left">
+        <img width="150px" th:src="@{/images/contract.png}" />
+    </div>
+    <label class="text-center" style="font-size:30px" th:text="${'Umowa ' + contract.ID_UMOWY}">
+    </label>
+    <div class="text-right">
+        <a class="btn btn-warning" th:href="@{/newContract/(ClientID=${client.ID_KLIENTA})}">Nowa umowa</a>
+        <a class="btn btn-warning" th:href="@{'/klient/' + ${client.ID_KLIENTA}}">Zobacz klienta</a>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table" style="table-layout: fixed">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Dane umowy</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">ID</th>
+                    <td th:text="${contract.ID_UMOWY}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Typ usługi</th>
+                    <td th:text="${contract.TYP_USLUGI}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Data zawarcia</th>
+                    <td th:text="${contract.DATA_ZAWARCIA}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Data zakończenia</th>
+                    <td th:text="${contract.DATA_ZAKONCZENIA}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table" style="table-layout: fixed">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Dane Klienta</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">ID</th>
+                    <td th:text="${client.ID_KLIENTA}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Imię</th>
+                    <td th:text="${client.IMIE}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Nazwisko</th>
+                    <td th:text="${client.NAZWISKO}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">PESEL</th>
+                    <td th:text="${client.PESEL}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <div class="btn-group" role="group">
+                <a class="btn btn-dark" th:href="@{'/editContract/' + ${contract.ID_UMOWY}}">Edytuj umowę</a>
+                <a class="btn btn-dark" onclick="return confirmDelete()" th:href="@{/deleteContract/(id=${contract.ID_UMOWY})}">Usuń umowę</a>
+            </div>
+            <a class="btn btn-warning" th:href="@{/umowy/1}">Wróć</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
