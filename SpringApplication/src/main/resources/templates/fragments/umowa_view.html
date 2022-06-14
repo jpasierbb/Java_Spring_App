@@ -35,11 +35,11 @@
                 </tr>
                 <tr>
                     <th scope="row">Data zawarcia</th>
-                    <td th:text="${contract.DATA_ZAWARCIA}"></td>
+                    <td th:text="${#strings.substring(contract.DATA_ZAWARCIA,0,11)}"></td>
                 </tr>
                 <tr>
                     <th scope="row">Data zakończenia</th>
-                    <td th:text="${contract.DATA_ZAKONCZENIA}"></td>
+                    <td th:text="${#strings.substring(contract.DATA_ZAKONCZENIA,0,11)}"></td>
                 </tr>
                 </tbody>
             </table>
@@ -69,6 +69,10 @@
                 <tr>
                     <th scope="row">PESEL</th>
                     <td th:text="${client.PESEL}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Numer Telefonu</th>
+                    <td th:text="${client.NUMER_TELEFONU}"></td>
                 </tr>
                 </tbody>
             </table>

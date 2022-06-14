@@ -78,6 +78,32 @@ public class ClientJoinedDAO {
 
     }
 
+    public void simpleSave(ClientJoined pos) {
+        String sql = "SELECT Max(ID_KLIENTA) FROM KLIENCI";
+        int maxID = jdbcTemplate.queryForObject(sql, int.class);
+
+        SimpleJdbcInsert insertActor4 = new SimpleJdbcInsert(jdbcTemplate);
+        insertActor4.withTableName("ADRESY").usingColumns("MIEJSCOWOSC","ULICA","NUMER_BUDYNKU","NUMER_LOKALU");
+        BeanPropertySqlParameterSource param4 = new BeanPropertySqlParameterSource(pos);
+        insertActor4.execute(param4);
+
+        String sqlAddr = "SELECT Max(ID_ADRESU) FROM ADRESY";
+        int maxIDAdrr = jdbcTemplate.queryForObject(sqlAddr, int.class);
+        pos.ID_ADRESU = maxIDAdrr;
+
+        SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
+        insertActor.withTableName("KLIENCI").usingColumns("NUMER_TELEFONU","ID_ADRESU");
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(pos);
+        insertActor.execute(param);
+
+        pos.ID_KLIENTA = maxID + 1;
+        SimpleJdbcInsert insertActor2 = new SimpleJdbcInsert(jdbcTemplate);
+        insertActor2.withTableName("OSOBA_PRYWATNA").usingColumns("ID_KLIENTA","IMIE","NAZWISKO", "PESEL");
+        BeanPropertySqlParameterSource param2 = new BeanPropertySqlParameterSource(pos);
+        insertActor2.execute(param2);
+
+    }
+
     public ClientJoined get(int id) {
         Object[] args = {id};
         String sql = "SELECT k.ID_KLIENTA, k.ID_Adresu, o.IMIE, o.NAZWISKO, o.PESEL, k.NUMER_TELEFONU, a.MIEJSCOWOSC, a.ULICA, a.NUMER_BUDYNKU, a.NUMER_LOKALU FROM KLIENCI k \n" +

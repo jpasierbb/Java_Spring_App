@@ -3,41 +3,46 @@ package projekt_bdbt.SpringApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import projekt_bdbt.SpringApplication.CRUD.Client;
-import projekt_bdbt.SpringApplication.CRUD.ClientDAO;
+import projekt_bdbt.SpringApplication.CRUD.*;
 
 @Controller
 public class ClientController {
     @Autowired
     ClientDAO clientdao;
+    @Autowired
+    ClientJoinedDAO clientjoineddao;
 
     @RequestMapping(value = {"/newClient"})
     public String showNewFormClient(Model model) {
-        Client client = new Client();
+        ClientJoined client = new ClientJoined();
         model.addAttribute("client", client);
         return "CRUD/new_form_client";
     }
+
+    @RequestMapping(value = "/saveClient", method = RequestMethod.POST)
+    public String saveEmployee(@ModelAttribute("client") ClientJoined client) {
+        clientjoineddao.simpleSave(client);
+        return "redirect:/klienci";
+    }
+
     @RequestMapping("/editClient/{ID_Klienta}")
     public ModelAndView showEditFormClient(@PathVariable(name = "ID_Klienta") int id) {
         ModelAndView mav = new ModelAndView("CRUD/edit_form_client");
-        Client client = clientdao.get(id);
+        ClientJoined client = clientjoineddao.get(id);
         mav.addObject("client", client);
         return mav;
     }
     @RequestMapping(value = "/updateClient", method = RequestMethod.POST)
-    public String updateClient(@ModelAttribute("client") Client client) {
-        clientdao.update(client);
-        return "redirect:/";
+    public String updateClient(@ModelAttribute("client") ClientJoined client) {
+        clientjoineddao.update(client);
+        return "redirect:/klienci";
     }
     //usun
-    @RequestMapping("/deleteClient/{ID_Klienta}")
-    public String deleteClient(@PathVariable(name = "ID_Klienta") int id) {
-        clientdao.delete(id);
-        return "redirect:/";
+    @RequestMapping("/deleteClient")
+    public String deleteClient(@RequestParam(name = "id") int id) {
+        clientjoineddao.delete(id);
+        return "redirect:/klienci";
     }
 }

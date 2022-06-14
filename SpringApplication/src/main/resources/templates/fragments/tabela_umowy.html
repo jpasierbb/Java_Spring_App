@@ -24,8 +24,8 @@
         <td th:text="${contract.ID_UMOWY}"></td>
         <td th:text="${contract.ID_USLUGI}"></td>
         <td th:text="${contract.TYP_USLUGI}"></td>
-        <td th:text="${contract.DATA_ZAWARCIA}"></td>
-        <td th:text="${contract.DATA_ZAKONCZENIA}"></td>
+        <td th:text="${#strings.substring(contract.DATA_ZAWARCIA,0,11)}"></td>
+        <td th:text="${#strings.substring(contract.DATA_ZAKONCZENIA,0,11)}"></td>
         <td th:text="${contract.ID_KLIENTA}">Numer Telefonu</td>
         <td>
             <a th:href="@{'/editContract/' + ${contract.ID_UMOWY}}" class="badge badge-dark">Edytuj</a>

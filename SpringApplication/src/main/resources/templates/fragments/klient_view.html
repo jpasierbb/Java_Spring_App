@@ -41,6 +41,10 @@
           <th scope="row">PESEL</th>
           <td th:text="${client.PESEL}"></td>
         </tr>
+        <tr>
+          <th scope="row">Numer Telefonu</th>
+          <td th:text="${client.NUMER_TELEFONU}"></td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -68,7 +72,7 @@
         </tr>
         <tr>
           <th scope="row">Numer lokalu</th>
-          <td th:text="${client.NUMER_LOKALU}"></td>
+          <td th:text="${#strings.defaultString(client.NUMER_LOKALU,'-')}"></td>
         </tr>
         </tbody>
       </table>
