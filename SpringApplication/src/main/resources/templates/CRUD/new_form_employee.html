@@ -70,8 +70,8 @@
           <tr>
             <th scope="row">Nazwa stanowiska</th>
             <td>
-              <select id="nazw_stan" class="custom-select" th:field="*{NAZWA}">
-              <option th:each="position : ${positionsList}" th:value="${position.NAZWA} " th:text="${position.NAZWA + ' (ID: ' + position.ID_STANOWISKA + ')'}"></option>
+              <select id="nazw_stan" class="custom-select" th:field="*{ID_STANOWISKA}">
+              <option th:each="position : ${positionsList}" th:value="${position.ID_STANOWISKA} " th:text="${position.NAZWA + ' (ID: ' + position.ID_STANOWISKA + ')'}"></option>
               </select>
             </td>
           </tr>

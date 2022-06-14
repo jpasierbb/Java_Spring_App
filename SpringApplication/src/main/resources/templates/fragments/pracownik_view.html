@@ -44,6 +44,10 @@
                     <th scope="row">Płeć</th>
                     <td th:text="${employee.PLEC}"></td>
                 </tr>
+                <tr>
+                    <th scope="row">Numer Telefonu</th>
+                    <td th:text="${employee.NUMER_TELEFONU}"></td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -69,6 +73,9 @@
                     <th scope="row">Opis Stanowiska</th>
                     <td th:text="${employee.OPIS}"></td>
                 </tr>
+                <tr>
+                    <th scope="row">Data Zatrudnienia</th>
+                    <td th:text="${#strings.substring(employee.DATA_ZATRUDNIENIA,0,11)}"></td>
                 </tbody>
             </table>
         </div>
