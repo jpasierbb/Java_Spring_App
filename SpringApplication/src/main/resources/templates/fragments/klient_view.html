@@ -8,9 +8,14 @@
 <body>
 <div class="container" th:fragment="klient">
   <div class="text-left">
-    <img width="150px" th:src="@{/images/contract.png}" />
+    <img width="150px" th:src="@{/images/clients.png}" />
   </div>
-  <label class="text-center" style="font-size:30px" th:text="${'Klient ' + client.IMIE + ' ' + client.NAZWISKO}"></label>
+  <label class="text-center" style="font-size:30px" th:text="${'Klient ' + client.IMIE + ' ' + client.NAZWISKO}">
+  </label>
+  <div class="text-right">
+    <a class="btn btn-warning" th:href="@{/newContract/(ClientID=${client.ID_KLIENTA})}">Nowa umowa</a>
+  </div>
+
   <div class="row">
     <div class="col-sm-12">
       <table class="table" style="table-layout: fixed">
@@ -22,7 +27,7 @@
         <tbody>
         <tr>
           <th scope="row">ID</th>
-          <td th:text="${client.ID_Klienta}"></td>
+          <td th:text="${client.ID_KLIENTA}"></td>
         </tr>
         <tr>
           <th scope="row">Imię</th>

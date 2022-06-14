@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Pracownicy</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link  th:href="@{/css/stylesheet.css}" th:rel="stylesheet"/>
+</head>
+<body>
+
+
+<div th:insert="fragments/header :: header"></div>
+<div class="container">
+    <div class="row">
+
+    </div>
+    <div class="text-left">
+        <img alt="employees logo" style="padding: 10px" src="#" width="200px" th:src="@{/images/clients.png}" />
+    </div>
+    <label style="font-size:30px" th:inline="text">KLIENCI</label>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div th:insert="fragments/tabela_klienci :: tabela"></div>
+            <div th:insert="fragments/table_nav_klienci :: tabela_nav"></div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

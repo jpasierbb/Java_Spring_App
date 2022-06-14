@@ -107,4 +107,16 @@ public class ListController {
         return "redirect:/klienci/1";
    }
 
+    @GetMapping("/klient/{id}")
+    public String getClient(Model model, @PathVariable(value = "id") int id){
+        try {
+            ClientJoined clientJoined = clientJoinedDAO.get(id);
+            model.addAttribute("client",clientJoined);
+            return "pracownik/klient";
+        }
+        catch (EmptyResultDataAccessException err){
+            return "errors/404";
+        }
+    }
+
 }
