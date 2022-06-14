@@ -86,7 +86,7 @@
         <a class="btn btn-dark" th:href="@{'/editClient/' + ${client.ID_KLIENTA}}">Edytuj Klienta</a>
         <a class="btn btn-dark" onclick="return confirmDelete()" th:href="@{/deleteClient/(id=${client.ID_KLIENTA})}">Usuń Klienta</a>
       </div>
-      <a class="btn btn-warning" th:href="@{/klienci/1}">Wróć</a>
+      <a class="btn btn-warning" onClick="history.back()">Wróć</a>
     </div>
   </div>
 </div>

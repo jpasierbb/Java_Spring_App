@@ -38,6 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/newContract/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
                 .antMatchers("/editContract/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
                 .antMatchers("/editEmployee/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
+                .antMatchers("/editClient/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
+                .antMatchers("/newClient/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
                 .and()
                 .formLogin()
                 .loginPage("/login")
