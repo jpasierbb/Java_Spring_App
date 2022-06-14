@@ -6,7 +6,7 @@
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
-<div class="container" th:fragment="umowa   ">
+<div class="container" th:fragment="umowa">
     <div class="text-left">
         <img width="150px" th:src="@{/images/contract.png}" />
     </div>
@@ -14,6 +14,7 @@
     </label>
     <div class="text-right">
         <a class="btn btn-warning" th:href="@{/newContract/(ClientID=${client.ID_KLIENTA})}">Nowa umowa</a>
+        <a class="btn btn-warning" th:href="@{'/klient/' + ${client.ID_KLIENTA}}">Zobacz klienta</a>
     </div>
     <div class="row">
         <div class="col-sm-12">
