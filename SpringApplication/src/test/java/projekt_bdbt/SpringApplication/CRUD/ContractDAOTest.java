@@ -52,6 +52,15 @@ class ContractDAOTest extends Object {
     }
 
     @Test
+    void getContracts(){
+        int id = 6;
+        List<Contract> emp = dao.getContracts(id);
+        System.out.println(emp);
+
+        assertNotNull(emp);
+    }
+
+    @Test
     void update() {
         Contract contract = new Contract();
         contract.setID_UMOWY(5);

@@ -29,6 +29,13 @@ public class Contract {
         this.ID_KLIENTA = ID_KLIENTA;
     }
 
+    public Contract(int ID_UMOWY, String TYP_USLUGI, String DATA_ZAWARCIA, String DATA_ZAKONCZENIA) {
+        this.ID_UMOWY = ID_UMOWY;
+        this.TYP_USLUGI = TYP_USLUGI;
+        this.DATA_ZAWARCIA = DATA_ZAWARCIA;
+        this.DATA_ZAKONCZENIA = DATA_ZAKONCZENIA;
+    }
+
     public int getID_UMOWY() {
         return ID_UMOWY;
     }

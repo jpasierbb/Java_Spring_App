@@ -10,7 +10,7 @@
     <div class="text-left">
         <img width="150px" th:src="@{/images/user-xxl.png}" />
     </div>
-    <label class="text-center" style="font-size:30px" th:text="${'Pracownik ' + employee.IMIE + ' ' + employee.DRUGIE_IMIE + ' ' + employee.NAZWISKO}"></label>
+    <label class="text-center" style="font-size:30px" th:text="${'Pracownik ' + employee.IMIE + ' ' + #strings.defaultString(employee.DRUGIE_IMIE,'') + ' ' + employee.NAZWISKO}"></label>
     <div class="row">
         <div class="col-sm-12">
             <table class="table" style="table-layout: fixed">
@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                     <th scope="row">Drugie Imię</th>
-                    <td th:text="${employee.DRUGIE_IMIE}"></td>
+                    <td th:text="${#strings.defaultString(employee.DRUGIE_IMIE,'-')}"></td>
                 </tr>
                 <tr>
                     <th scope="row">Nazwisko</th>
@@ -43,6 +43,10 @@
                 <tr>
                     <th scope="row">Płeć</th>
                     <td th:text="${employee.PLEC}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Numer Telefonu</th>
+                    <td th:text="${employee.NUMER_TELEFONU}"></td>
                 </tr>
                 </tbody>
             </table>
@@ -69,6 +73,9 @@
                     <th scope="row">Opis Stanowiska</th>
                     <td th:text="${employee.OPIS}"></td>
                 </tr>
+                <tr>
+                    <th scope="row">Data Zatrudnienia</th>
+                    <td th:text="${#strings.substring(employee.DATA_ZATRUDNIENIA,0,11)}"></td>
                 </tbody>
             </table>
         </div>
@@ -96,7 +103,7 @@
                 </tr>
                 <tr>
                     <th scope="row">Numer lokalu</th>
-                    <td th:text="${employee.NUMER_LOKALU}"></td>
+                    <td th:text="${#strings.defaultString(employee.NUMER_LOKALU,'-')}"></td>
                 </tr>
                 </tbody>
             </table>

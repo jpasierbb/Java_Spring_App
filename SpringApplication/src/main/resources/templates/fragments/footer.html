@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/sticky-footer.css} "/>
 </head>
 <body>
 
 </body>
+<footer>
+    <footer class="p-3 mb-2 bg-light text-dark" th:fragment = "footer">
+        <div class="container">
+            <span class="text-muted" style="font-size:12px">Autorzy: Jakub Pasierb, Andrzej Tłomak</span>
+        </div>
+    </footer>
+</footer>
 </html>

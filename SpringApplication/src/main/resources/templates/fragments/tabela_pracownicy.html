@@ -23,7 +23,7 @@
     <tr th:each="employee : ${listEmployee}">
         <td th:text="${employee.ID_PRACOWNIKA}">ID</td>
         <td th:text="${employee.IMIE}">Imie</td>
-        <td th:text="${employee.DRUGIE_IMIE}">Drugie Imie</td>
+        <td th:text="${#strings.defaultString(employee.DRUGIE_IMIE,'-')}">Drugie Imie</td>
         <td th:text="${employee.NAZWISKO}">Nazwisko</td>
         <td th:text="${employee.PLEC}">Plec</td>
         <td th:text="${employee.NUMER_TELEFONU}">Numer Telefonu</td>

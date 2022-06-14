@@ -1,38 +1,142 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <title>Edycja danych pracownika</title>
+    <meta charset="UTF-8">
+    <title>Edytuj pracownika</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
-<div align="center">
-    <h1>Edycja danych pracownika</h1>
-    <br />
-    <form action="#" th:action="@{/updateEmployee}" th:object="${employee}"
-          method="post">
+<div th:insert="fragments/header :: header"></div>
 
-        <table border="0" cellpadding="10">
-            <tr>
-                <td>ID:</td>
-                <td><input type="text" th:field="*{ID_PRACOWNIKA}" readonly="readonly" /></td>
-            </tr>
-            <tr>
-                <td>Numer Telefonu:</td>
-                <td><input type="text" th:field="*{NUMER_TELEFONU}" /></td>
-            </tr>
-            <tr>
-                <td>Adres:</td>
-                <td><input type="text" th:field="*{ID_ADRESU}" /></td>
-            </tr>
-            <tr>
-                <td>Stanowisko:</td>
-                <td><input type="text" th:field="*{ID_STANOWISKA}" /></td>
-            </tr>
-            <tr>
-                <td colspan="2"><button type="submit">Save</button> </td>
-            </tr>
-        </table>
-    </form>
-</div>
+<div class="container">
+    <div class="text-left">
+        <img width="150px" th:src="@{/images/user-xxl.png}" />
+        <label class="text-center" style="font-size:30px" th:text="${'Pracownik ' + employee.IMIE + ' ' + #strings.defaultString(employee.DRUGIE_IMIE,'') + ' ' + employee.NAZWISKO}"></label>
+        <form action="#" th:action="@{/updateEmployee}" th:object="${employee}" method="post">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table" style="table-layout: fixed">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Dane Osobowe</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td><input class="form-control" type="text" th:field="*{ID_PRACOWNIKA}" readonly="readonly" /></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Imię</th>
+                            <td><input class="form-control" th:type="text" type="text" th:field="*{IMIE}" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Drugie Imię</th>
+                            <td> <input class="form-control" th:type="text" th:field="*{DRUGIE_IMIE}"/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Nazwisko</th>
+                            <td> <input class="form-control" th:type="text" th:field="*{NAZWISKO}"/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">PESEL</th>
+                            <td> <input class="form-control" th:type="text" th:field="*{PESEL}"/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Płeć</th>
+                            <td>
+                                <select class = "custom-select" th:field="*{PLEC}">
+                                    <option th:value="M" th:text="Mężczyzna"></option>
+                                    <option th:value="K" th:text="Kobieta"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Numer Telefonu</th>
+                            <td> <input class="form-control" th:type="text" th:field="*{NUMER_TELEFONU}"/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table" style="table-layout: fixed">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Stanowisko</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">Nazwa stanowiska</th>
+                            <td>
+                                <select id="nazw_stan" class="custom-select" th:field="*{ID_STANOWISKA}">
+                                    <option th:each="position : ${positionsList}" th:value="${position.ID_STANOWISKA} " th:text="${position.NAZWA + ' (ID: ' + position.ID_STANOWISKA + ')'}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Data Zatrudnienia</th>
+                            <td>
+                                <div>
+                                    <input class="custom-select" type="date" th:field="*{DATA_ZATRUDNIENIA}"/>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table" style="table-layout: fixed">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Adres</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td><input class="form-control" type="text" th:field="*{ID_ADRESU}" readonly="readonly" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ulica</th>
+                            <td> <input class="form-control" th:type="text" th:field="*{ULICA}"/> </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Miejscowość</th>
+                            <td> <input class="form-control" th:type="text" th:field="*{MIEJSCOWOSC}"/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Numer budynku</th>
+                            <td> <input class="form-control" th:type="text" th:field="*{NUMER_BUDYNKU}"/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Numer lokalu</th>
+                            <td> <input class="form-control" th:type="text" th:field="*{NUMER_LOKALU}"/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                    <button class="btn btn-success" type="submit">Zapisz</button>
+                    <button class="btn btn-danger" type="reset">Wyczyść zmiany</button>
+                    <a class="btn btn-warning" th:href="@{/pracownicy/1}">Wróć</a>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
 </body>
+</html>
