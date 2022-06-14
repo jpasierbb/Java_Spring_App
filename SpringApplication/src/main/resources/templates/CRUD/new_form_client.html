@@ -25,19 +25,27 @@
                     <tbody>
                     <tr>
                         <th scope="row">Imię</th>
-                        <td><input class="form-control" th:type="text" type="text" th:field="*{IMIE}" /></td>
+                        <td><input class="form-control" th:type="text" th:field="*{IMIE}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('IMIE')}" th:errors="*{IMIE}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Nazwisko</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{NAZWISKO}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{NAZWISKO}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('NAZWISKO')}" th:errors="*{NAZWISKO}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">PESEL</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{PESEL}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{PESEL}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('PESEL')}" th:errors="*{PESEL}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Numer Telefonu</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_TELEFONU}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_TELEFONU}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('NUMER_TELEFONU')}" th:errors="*{NUMER_TELEFONU}"></div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -55,19 +63,27 @@
                     <tbody>
                     <tr>
                         <th scope="row">Ulica</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{ULICA}"/> </td>
+                        <td> <input class="form-control" th:type="text" th:field="*{ULICA}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('ULICA')}" th:errors="*{ULICA}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Miejscowość</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{MIEJSCOWOSC}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{MIEJSCOWOSC}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('MIEJSCOWOSC')}" th:errors="*{MIEJSCOWOSC}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Numer budynku</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_BUDYNKU}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_BUDYNKU}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('NUMER_BUDYNKU')}" th:errors="*{NUMER_BUDYNKU}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Numer lokalu</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_LOKALU}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_LOKALU}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('NUMER_LOKALU')}" th:errors="*{NUMER_LOKALU}"></div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

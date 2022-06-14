@@ -16,42 +16,6 @@
     <label class="text-center" style="font-size:30px" th:text="${'Klient ' + client.IMIE + ' ' + client.NAZWISKO}"></label>
     <form action="#" th:action="@{/updateClient}" th:object="${client}" method="post">
 
-        <!--
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table" style="table-layout: fixed">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Umowa</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">Typ Usługi</th>
-                        <td>
-                            <select id="nazw_stan" class="custom-select" th:field="*{ID_USLUGI}">
-                                <option th:each="position : ${positionsList}" th:value="${position.ID_STANOWISKA} " th:text="${position.NAZWA + ' (ID: ' + position.ID_STANOWISKA + ')'}"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Data Zawarcia</th>
-                        <td>
-                            <input class="form-control" th:type="date" th:field="*{DATA_ZAWARCIA}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Data Zakonczenia</th>
-                        <td>
-                            <input class="form-control" th:type="date" th:field="*{DATA_ZAKONCZENIA }"/>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        -->
-
         <div class="row">
             <div class="col-sm-12">
                 <table class="table" style="table-layout: fixed">
@@ -67,19 +31,27 @@
                         <td><input class="form-control" type="text" th:field="*{ID_KLIENTA}" readonly="readonly" /></td>
                     </tr>
                         <th scope="row">Imię</th>
-                        <td><input class="form-control" th:type="text" type="text" th:field="*{IMIE}" /></td>
+                        <td><input class="form-control" th:type="text" type="text" th:field="*{IMIE}" />
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('IMIE')}" th:errors="*{IMIE}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Nazwisko</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{NAZWISKO}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{NAZWISKO}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('NAZWISKO')}" th:errors="*{NAZWISKO}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">PESEL</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{PESEL}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{PESEL}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('PESEL')}" th:errors="*{PESEL}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Numer Telefonu</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_TELEFONU}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_TELEFONU}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('NUMER_TELEFONU')}" th:errors="*{NUMER_TELEFONU}"></div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -101,19 +73,27 @@
                         <td><input class="form-control" type="text" th:field="*{ID_ADRESU}" readonly="readonly" /></td>
                     </tr>
                         <th scope="row">Ulica</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{ULICA}"/> </td>
+                        <td> <input class="form-control" th:type="text" th:field="*{ULICA}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('ULICA')}" th:errors="*{ULICA}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Miejscowość</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{MIEJSCOWOSC}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{MIEJSCOWOSC}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('MIEJSCOWOSC')}" th:errors="*{MIEJSCOWOSC}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Numer budynku</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_BUDYNKU}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_BUDYNKU}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('NUMER_BUDYNKU')}" th:errors="*{NUMER_BUDYNKU}"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Numer lokalu</th>
-                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_LOKALU}"/></td>
+                        <td> <input class="form-control" th:type="text" th:field="*{NUMER_LOKALU}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('NUMER_LOKALU')}" th:errors="*{NUMER_LOKALU}"></div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
