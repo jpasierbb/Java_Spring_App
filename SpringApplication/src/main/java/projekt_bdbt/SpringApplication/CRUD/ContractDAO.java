@@ -45,10 +45,6 @@ public class ContractDAO {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
     public void save(Contract contract) {
-        String sql = "SELECT Max(ID_KLIENTA) FROM KLIENCI";
-        int maxID = jdbcTemplate.queryForObject(sql, int.class);
-        //contract.ID_KLIENTA = maxID + 1;
-
         java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
         java.sql.Date sqlDate2 = new java.sql.Date(System.currentTimeMillis());
         contract.DATA_ZAWARCIA = sqlDate.toString();
