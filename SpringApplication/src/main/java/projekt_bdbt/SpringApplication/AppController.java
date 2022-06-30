@@ -70,7 +70,13 @@ public class AppController implements WebMvcConfigurer {
             (request.isUserInRole
                             ("SPRZEDAWCA")) {
                 return "redirect:/main_sprzedawca";
-            }else {
+            }
+            else if
+            (request.isUserInRole
+                            ("MANAGER")) {
+                return "redirect:/main_manager";
+            }
+            else {
                 return "redirect:/index";
             }
         }
@@ -188,6 +194,10 @@ public class AppController implements WebMvcConfigurer {
         @RequestMapping(value = {"/main_sprzedawca"})
         public String showSprzedawcaPage(Model model) {
             return "sprzedawca/main_sprzedawca";
+        }
+        @RequestMapping(value = {"/main_manager"})
+        public String showManagerPage(Model model) {
+            return "manager/main_manager";
         }
         @GetMapping(value = "/return")
         public String goBack(HttpServletRequest request){

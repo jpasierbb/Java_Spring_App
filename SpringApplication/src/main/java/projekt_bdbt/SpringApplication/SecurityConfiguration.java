@@ -30,11 +30,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/newEmployee").access("hasRole('OPERATOR')")
                 .antMatchers("/main_klient").access("hasRole('KLIENT')")
                 .antMatchers("/main_pracownik").access("hasRole('PRACOWNIK')")
+                .antMatchers("/main_manager").access("hasRole('MANAGER')")
+                .antMatchers("/pracownicy/**").access("hasAnyRole('MANAGER', 'OPERATOR')")
+                .antMatchers("/pracownik/**").access("hasRole('MANAGER')")
                 .antMatchers("/umowy/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
                 .antMatchers("/umowa/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
                 .antMatchers("/klienci/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
                 .antMatchers("/klient/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
                 .antMatchers("/newEmployee/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
+                .antMatchers("/newEmployee/**").access("hasRole('MANAGER')")
                 .antMatchers("/newContract/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
                 .antMatchers("/editContract/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
                 .antMatchers("/editEmployee/**").access("hasAnyRole('PRACOWNIK','OPERATOR')")
@@ -66,6 +70,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("operator")
                 .password("operator")
                 .roles("OPERATOR");
+               /* .and()
+                .withUser("manager")
+                .password("manager")
+                .roles("MANAGER"); */
+
     }
     @Bean
     public PasswordEncoder getPasswordEncoder() { return NoOpPasswordEncoder.getInstance();
